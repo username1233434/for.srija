@@ -259,3 +259,9 @@ document.addEventListener('pointerdown',e=>{if(e.target.closest('button,.memory,
 $$('.flower-bloom').forEach(btn=>btn.addEventListener('animationend',()=>{if(btn.classList.contains('bloomed')){const r=btn.getBoundingClientRect();sparkleAt(r.left+r.width/2,r.top+r.height/2)}}));
 $$('.party-balloon').forEach(btn=>btn.addEventListener('animationend',()=>{if(btn.classList.contains('popped')){const r=btn.getBoundingClientRect();sparkleAt(r.left+r.width/2,r.top+r.height/2)}}));
 document.querySelectorAll('button').forEach(btn=>btn.addEventListener('pointermove',e=>{const r=btn.getBoundingClientRect();btn.style.setProperty('--mx',(e.clientX-r.left)+'px');btn.style.setProperty('--my',(e.clientY-r.top)+'px')},{passive:true}));
+
+(function addHiddenSurprise(){
+  const heart=document.querySelector('#secretHeart');
+  if(!heart)return;
+  heart.addEventListener('dblclick',()=>{toast('Okay, okay… you found the secret secret. ♡');for(let i=0;i<12;i++)setTimeout(()=>sparkleAt(innerWidth/2,innerHeight/2),i*45)});
+})();
