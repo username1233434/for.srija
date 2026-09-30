@@ -491,5 +491,41 @@ ready(function(){
 
 })();
 </script>
+
+<!-- CINEMATIC-STAR-LAYOUT-2026-10-01 -->
+<style>
+/* Screenshot-inspired opening: quiet, editorial, starry and cinematic. */
+#intro{background:#030407!important}
+#intro .orb{display:none!important}
+#intro .stars{opacity:.72!important;background-image:radial-gradient(circle,#fff 0 1px,transparent 1.5px),radial-gradient(circle,#fff 0 1px,transparent 1.5px)!important;background-size:73px 73px,137px 137px!important;background-position:11px 19px,43px 71px!important;animation:cinematicStars 26s linear infinite!important}
+#intro .stars:after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,transparent 0 28%,#030407aa 78%);}
+@keyframes cinematicStars{from{transform:translate3d(0,0,0)}to{transform:translate3d(-73px,-137px,0)}}
+#intro .intro-card{width:min(760px,92vw);padding:32px 24px;display:flex;flex-direction:column;align-items:center;position:relative}
+#intro .eyebrow{font-family:'DM Sans',sans-serif;font-size:.76rem;letter-spacing:.34em;color:#8d8b94;margin:0 0 58px;text-transform:uppercase}
+#intro .intro-line{order:2;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.2rem,3.8vw,1.75rem);font-weight:400;letter-spacing:.01em;color:#d8d5d9;margin:34px 0 0;max-width:620px}
+#intro h1{order:1;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(5rem,18vw,8rem);font-weight:400;letter-spacing:-.035em;line-height:.8;margin:0;color:#f4f0f2;background:none;-webkit-text-fill-color:#f4f0f2;position:relative;z-index:3}
+#intro .count{position:absolute;z-index:1;left:50%;top:47%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(9rem,32vw,16rem);font-weight:400;line-height:.7;color:#fff;opacity:.075;margin:0;pointer-events:none}
+#intro .date{display:block!important;order:0;font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.34em;color:#66656d;margin:0 0 42px;text-transform:uppercase}
+#intro .intro-msg{order:3;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.15rem,3.5vw,1.55rem);font-weight:400;color:#d5d1d6;margin:0;max-width:600px}
+#intro .btn{order:4;margin-top:55px;border:0;background:transparent;backdrop-filter:none;border-radius:0;padding:8px 4px;color:#eee;font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;position:relative}
+#intro .btn:after{content:'↗';display:inline-block;margin-left:14px;color:#bca0ad;font-size:.9rem;letter-spacing:0}
+#intro .btn:before{content:'';position:absolute;left:0;right:24px;bottom:-10px;height:1px;background:#fff1a}
+#intro .btn:hover{background:transparent;transform:none;color:#fff}
+#intro .small-note{order:5;font-size:.68rem;letter-spacing:.08em;color:#56545b;margin-top:25px}
+#intro .skip{color:#55545b}
+#intro.lights-on{background:#030407!important}
+#intro.lights-on .stars{opacity:.9!important}
+@media(max-width:600px){#intro .intro-card{padding:24px 18px}#intro .eyebrow{margin-bottom:45px;font-size:.68rem;letter-spacing:.28em}#intro .date{margin-bottom:34px}#intro .intro-line{font-size:1.18rem;line-height:1.35;margin-top:28px}#intro .intro-msg{font-size:1.2rem}#intro .btn{margin-top:42px}}
+</style>
+<script>
+(function(){
+ var d=document.getElementById('date');
+ if(d)d.textContent='30 · 09 · 2026';
+ var msg=document.getElementById('introMsg');
+ if(msg)msg.textContent='A little universe, made just for you.';
+ var line=document.querySelector('#intro .intro-line');
+ if(line)line.textContent='Tonight, the stars have something to say...';
+})();
+</script>
 </body>
 </html>
