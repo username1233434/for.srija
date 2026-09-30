@@ -49,7 +49,64 @@ audio.addEventListener('loadedmetadata',()=>{status.textContent=currentTrack==='
 audio.addEventListener('error',()=>status.textContent='The soundtrack could not be loaded.');
 $('#musicToggle').addEventListener('click',async()=>{if(audio.paused){try{await audio.play();$('#musicLabel').textContent=currentTrack==='angel'?'pause the happy part':'pause the night';status.textContent=currentTrack==='angel'?'Pretty Little Angel Eyes · playing':'City of Stars · playing'}catch{status.textContent='Playback was blocked. Tap again to start it.'}}else{audio.pause();$('#musicLabel').textContent=currentTrack==='angel'?'play the happy part':'play the night';status.textContent=currentTrack==='angel'?'Pretty Little Angel Eyes · paused':'City of Stars · paused'}});
 $('#envelope').addEventListener('click',()=>{const e=$('#envelope');if(e.classList.contains('open'))return;e.classList.add('open');setTimeout(()=>{$('#letterPaper').classList.add('show');document.querySelector('.tap-hint').textContent='a little piece of my heart';let i=0;const target=$('#letterText');const next=()=>{if(i>=letter.length)return;const p=document.createElement('p');p.textContent=letter[i++];target.appendChild(p);p.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:800});setTimeout(next,450)};next()},850)});
-const candleBox=$('#candles');for(let i=0;i<19;i++){const c=document.createElement('div');c.className='candle';c.innerHTML='<div class="flame"></div><div class="smoke"></div><div class="wax"></div>';candleBox.appendChild(c)}let blown=false;function blow(){if(blown)return;blown=true;$$('.candle').forEach((c,i)=>setTimeout(()=>c.classList.add('off'),i*45));$('#candlePrompt').textContent='Make it a good one.';setTimeout(()=>{document.querySelector('.wish').classList.add('revealed');document.querySelector('.wish').scrollIntoView({behavior:'smooth'})},1700)}$('#blowBtn').addEventListener('click',blow);let last=0;window.addEventListener('devicemotion',e=>{const a=e.accelerationIncludingGravity;if(!a)return;const mag=Math.abs(a.x||0)+Math.abs(a.y||0)+Math.abs(a.z||0);if(mag>28&&Date.now()-last>1200){last=Date.now();blow()}});
+const candleBox=$('#candles');for(let i=0;i<19;i++){const c=document.createElement('div');c.className='candle';c.innerHTML='<div class="flame"></div><div class="smoke"></div><div class="wax"></div>';candleBox.appendChild(c)}let blown=false;function blow(){if(blown)return;blown=true;$('.candle').forEach((c,i)=>setTimeout(()=>c.classList.add('off'),i*45));$('#candlePrompt').textContent='Make it a good one.';setTimeout(()=>{document.querySelector('.wish').classList.add('revealed');document.querySelector('.wish').scrollIntoView({behavior:'smooth'})},1700)}
+$('#blowBtn').addEventListener('click',blow);
+
+let motionEnabled=false,shakeHits=0,lastShake=0,lastMotion=0,prevMotion=null;
+async function enableMotion(){
+  try{
+    if(typeof DeviceMotionEvent!=='undefined' && typeof DeviceMotionEvent.requestPermission==='function'){
+      const permission=await DeviceMotionEvent.requestPermission();
+      motionEnabled=permission==='granted';
+    }else{
+      motionEnabled=true;
+    }
+  }catch(e){
+    motionEnabled=false;
+  }
+}
+const candleSection=document.querySelector('.candles');
+if(candleSection)candleSection.addEventListener('pointerdown',()=>{if(!motionEnabled)enableMotion()},{passive:true});
+
+window.addEventListener('devicemotion',e=>{
+  if(blown||!motionEnabled)return;
+  const a=e.acceleration;
+  const g=e.accelerationIncludingGravity;
+  if(!a && !g)return;
+
+  const x=a?.x??g?.x??0;
+  const y=a?.y??g?.y??0;
+  const z=a?.z??g?.z??0;
+  const now=Date.now();
+
+  if(!prevMotion){
+    prevMotion={x,y,z};
+    lastMotion=now;
+    return;
+  }
+
+  const dx=x-prevMotion.x,dy=y-prevMotion.y,dz=z-prevMotion.z;
+  const delta=Math.sqrt(dx*dx+dy*dy+dz*dz);
+  prevMotion={x,y,z};
+
+  if(delta>9 && now-lastMotion>70){
+    if(now-lastShake>350){
+      shakeHits++;
+      lastShake=now;
+      if(shakeHits>=3){
+        shakeHits=0;
+        blow();
+      }
+    }
+  }
+
+  if(now-lastShake>1300)shakeHits=0;
+  lastMotion=now;
+});
+
+if(candleSection){
+  candleSection.addEventListener('touchstart',()=>{if(!motionEnabled)enableMotion()},{passive:true});
+}
 $('#secretHeart').addEventListener('click',()=>toast('There are still so many little things I love about you.'));$('.secret-star').addEventListener('click',()=>toast('You found one. I knew you would.'));
 const intro=$('#intro'); const lightsBtn=$('#lightsBtn'); const midnightClock=$('#midnightClock'); const midnightDate=$('#midnightDate'); const midnightMessage=$('#midnightMessage'); const musicStartBtn=$('#musicStartBtn');
 let openingStarted=false;
