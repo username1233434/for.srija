@@ -9,8 +9,8 @@ const stage=$('#memoryStage');photos.forEach((src,i)=>{const f=document.createEl
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.14});$$('.memory').forEach(x=>io.observe(x));
 let reason=0;const reasonText=$('#reasonText'),reasonIndex=$('#reasonIndex');function renderReason(){reasonText.innerHTML=reasons[reason].replace(/\n/g,'<br>');reasonIndex.textContent=String(reason+1).padStart(2,'0');reasonText.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'none'}],{duration:600,easing:'cubic-bezier(.2,.8,.2,1)'})}renderReason();$('#nextReason').addEventListener('click',()=>{reason=(reason+1)%19;renderReason()});
 const audio=$('#song');
-const audioFile="'City of Stars' (Duet ft. Ryan Gosling, Emma Stone), La La Land Original Motion Picture Soundtrack, (320 Kbps).mp3";
-audio.src='assets/audio/'+encodeURIComponent(audioFile).replace(/'/g,'%27');
+const audioFile="'City of Stars' (Duet ft. Ryan Gosling, Emma Stone) - La La Land Original Motion Picture Soundtrack - (320 Kbps).mp3";
+audio.src='assets/audio/'+encodeURIComponent(audioFile);audio.load();
 const status=$('#musicStatus');
 audio.addEventListener('loadedmetadata',()=>status.textContent='City of Stars · ready');
 audio.addEventListener('error',()=>status.textContent='The soundtrack could not be loaded.');$('#musicToggle').addEventListener('click',async()=>{if(audio.paused){try{await audio.play();$('#musicLabel').textContent='pause the night';status.textContent='City of Stars · playing'}catch{status.textContent='Playback was blocked. Tap again to start it.'}}else{audio.pause();$('#musicLabel').textContent='play the night';status.textContent='City of Stars · paused'}});
@@ -20,7 +20,7 @@ $('#secretHeart').addEventListener('click',()=>toast('There are still so many li
 const intro=$('#intro'); const lightsBtn=$('#lightsBtn'); const midnightClock=$('#midnightClock'); const midnightDate=$('#midnightDate'); const midnightMessage=$('#midnightMessage'); const musicStartBtn=$('#musicStartBtn');
 let openingStarted=false;
 lightsBtn.addEventListener('click',()=>{if(openingStarted)return;openingStarted=true;intro.classList.add('lights-on');lightsBtn.textContent='The lights are on';setTimeout(()=>{intro.classList.add('midnight');let ticks=0;const times=['11:59:59','12:00:00'];const timer=setInterval(()=>{midnightClock.textContent=times[Math.min(ticks,1)];if(ticks===1){clearInterval(timer);midnightDate.textContent='1 October 2026';midnightMessage.textContent='Happy birthday, Srija.'}},1100);ticks=1},1600)});
-musicStartBtn.addEventListener('click',async()=>{intro.classList.add('music-ready');try{await audio.play();musicLabel.textContent='pause the night';status.textContent='City of Stars · playing';musicStartBtn.textContent='The night has begun ♪';setTimeout(()=>intro.classList.add('exit'),1400)}catch{status.textContent='Tap again to start the music.'}});
+musicStartBtn.addEventListener('click',async()=>{try{musicStartBtn.disabled=true;musicStartBtn.textContent='starting the music...';await audio.play();intro.classList.add('music-ready');status.textContent='City of Stars · playing';musicStartBtn.textContent='The night has begun ♪';setTimeout(()=>intro.classList.add('exit'),1400)}catch(error){musicStartBtn.disabled=false;musicStartBtn.textContent='Tap to start the music ♪';status.textContent='The soundtrack could not start. Tap again.';console.error('Music playback failed:',error)}});
 const journeyLines=[
 "Here’s to a happy journey ahead, Srija. I hope this new phase of your life brings you places you never imagined you’d reach.",
 "A new chapter does not have to be perfect to be beautiful. I hope you enjoy every little part of becoming who you are meant to be.",
