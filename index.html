@@ -1068,5 +1068,135 @@ ready(function(){
   });
 })();
 </script>
+
+<!-- LIVE-KAWAII-NEON-BACKGROUND-2026-10-01 -->
+<style>
+/* Living neon night: layered particles, orbs, stars, hearts and shooting stars */
+body{background:#05060b!important}
+body:before{
+  animation:starDrift 18s linear infinite,nightBreath 7s ease-in-out infinite alternate!important;
+}
+@keyframes nightBreath{from{opacity:.55}to{opacity:1}}
+.live-sky{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 20%,#ff72b611,transparent 28%),
+    radial-gradient(circle at 15% 75%,#63e6ff0d,transparent 28%),
+    radial-gradient(circle at 88% 65%,#a982ff0d,transparent 30%);
+}
+.neon-orb{
+  position:absolute;border-radius:50%;filter:blur(2px);
+  mix-blend-mode:screen;opacity:.38;
+  box-shadow:0 0 25px currentColor,0 0 70px currentColor,0 0 130px currentColor;
+  animation:orbFloat 11s ease-in-out infinite;
+}
+.no1{width:10px;height:10px;left:8%;top:23%;color:#ff72b6;background:#ff72b6}
+.no2{width:7px;height:7px;left:74%;top:19%;color:#63e6ff;background:#63e6ff;animation-delay:-4s}
+.no3{width:12px;height:12px;left:88%;top:57%;color:#a982ff;background:#a982ff;animation-delay:-7s}
+.no4{width:6px;height:6px;left:22%;top:83%;color:#ffe27a;background:#ffe27a;animation-delay:-2s}
+@keyframes orbFloat{
+  0%,100%{transform:translate(0,0) scale(1)}
+  30%{transform:translate(25px,-35px) scale(1.5)}
+  65%{transform:translate(-18px,-65px) scale(.8)}
+}
+.live-star{
+  position:absolute;color:#fff;font-size:12px;
+  text-shadow:0 0 7px #fff,0 0 18px #ffb4d8;
+  animation:starTwinkle 2.2s ease-in-out infinite;
+}
+@keyframes starTwinkle{0%,100%{opacity:.18;transform:scale(.7)}50%{opacity:1;transform:scale(1.25)}}
+.live-heart{
+  position:absolute;font-size:clamp(12px,2vw,22px);
+  color:#ff72b6;text-shadow:0 0 8px #ff72b6,0 0 25px #ff72b6;
+  opacity:0;animation:heartDrift 10s linear infinite;
+}
+@keyframes heartDrift{
+  0%{transform:translate3d(0,110vh,0) rotate(-12deg) scale(.65);opacity:0}
+  12%{opacity:.7}80%{opacity:.5}
+  100%{transform:translate3d(var(--x),-15vh,0) rotate(18deg) scale(1.15);opacity:0}
+}
+.shooting-star{
+  position:absolute;width:90px;height:1px;
+  background:linear-gradient(90deg,transparent,#fff,#ffb4d8,transparent);
+  box-shadow:0 0 9px #fff,0 0 22px #ff72b6;
+  transform:rotate(-28deg);
+  opacity:0;
+  animation:shoot 9s linear infinite;
+}
+@keyframes shoot{
+  0%,72%{opacity:0;transform:translate(0,0) rotate(-28deg)}
+  74%{opacity:1}
+  86%{opacity:0;transform:translate(-240px,180px) rotate(-28deg)}
+  100%{opacity:0}
+}
+.neon-moon{
+  position:absolute;right:6%;top:8%;width:58px;height:58px;border-radius:50%;
+  background:#fff4d8;box-shadow:0 0 12px #fff5c9,0 0 35px #ffd86b,0 0 85px #ff72b655;
+  opacity:.7;animation:moonPulse 5s ease-in-out infinite;
+}
+.neon-moon:after{
+  content:'';position:absolute;width:55px;height:55px;border-radius:50%;
+  background:#080912;left:-17px;top:-7px;
+}
+@keyframes moonPulse{50%{transform:translateY(-8px) scale(1.06);filter:brightness(1.15)}}
+.neon-cloud{
+  position:absolute;width:150px;height:35px;border-radius:99px;
+  background:#d8b5ff10;filter:blur(8px);box-shadow:0 0 35px #a982ff22;
+  animation:cloudMove 24s linear infinite;
+}
+.nc1{left:-180px;top:28%;animation-delay:-7s}.nc2{left:-220px;top:68%;animation-duration:31s;animation-delay:-19s}
+@keyframes cloudMove{from{transform:translateX(0)}to{transform:translateX(calc(100vw + 400px))}}
+.neon-ring{
+  position:absolute;width:90px;height:90px;border:1px solid #ff72b644;border-radius:50%;
+  box-shadow:0 0 20px #ff72b633,inset 0 0 20px #ff72b622;
+  animation:ringFloat 8s ease-in-out infinite;
+}
+.nr1{left:4%;top:55%}.nr2{right:3%;top:31%;border-color:#63e6ff44;box-shadow:0 0 20px #63e6ff33}
+@keyframes ringFloat{50%{transform:translateY(-18px) rotate(180deg) scale(1.12)}}
+@media(max-width:600px){
+  .neon-moon{width:42px;height:42px;right:4%;top:6%}
+  .neon-moon:after{width:40px;height:40px}
+  .neon-ring{width:55px;height:55px}
+  .live-heart{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){
+  .live-sky *{animation:none!important}
+}
+</style>
+<div class="live-sky" aria-hidden="true">
+  <div class="neon-moon"></div>
+  <div class="neon-cloud nc1"></div><div class="neon-cloud nc2"></div>
+  <div class="neon-ring nr1"></div><div class="neon-ring nr2"></div>
+  <div class="neon-orb no1"></div><div class="neon-orb no2"></div>
+  <div class="neon-orb no3"></div><div class="neon-orb no4"></div>
+  <div class="shooting-star" style="left:72%;top:12%;animation-delay:-2s"></div>
+  <div class="shooting-star" style="left:38%;top:42%;animation-delay:-6.5s"></div>
+  <span class="live-star" style="left:16%;top:14%;animation-delay:-.3s">✦</span>
+  <span class="live-star" style="left:61%;top:28%;animation-delay:-1.2s">✧</span>
+  <span class="live-star" style="left:91%;top:38%;animation-delay:-1.8s">✦</span>
+  <span class="live-star" style="left:31%;top:61%;animation-delay:-.7s">✧</span>
+  <span class="live-star" style="left:81%;top:78%;animation-delay:-1.5s">✦</span>
+  <span class="live-heart" style="left:13%;--x:70px;animation-delay:-1s">♡</span>
+  <span class="live-heart" style="left:44%;--x:-50px;animation-delay:-5s">♥</span>
+  <span class="live-heart" style="left:79%;--x:35px;animation-delay:-8s">♡</span>
+</div>
+<script>
+(function(){
+  const sky=document.querySelector('.live-sky');
+  if(!sky)return;
+  /* Generate tiny drifting sparkles so the background is never completely still. */
+  for(let i=0;i<18;i++){
+    const s=document.createElement('span');
+    s.className='live-star';
+    s.textContent=i%3===0?'✦':'.';
+    s.style.left=(Math.random()*96+2)+'%';
+    s.style.top=(Math.random()*94+3)+'%';
+    s.style.animationDelay=(-Math.random()*3)+'s';
+    s.style.animationDuration=(1.7+Math.random()*2.8)+'s';
+    s.style.fontSize=(5+Math.random()*9)+'px';
+    sky.appendChild(s);
+  }
+})();
+</script>
 </body>
 </html>
