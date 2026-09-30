@@ -753,5 +753,30 @@ ready(function(){
 })();
 </script>
 
+
+<!-- OPENING-SRIJA-FIT-FIX-2026-10-01 -->
+<style>
+/* Keep the oversized opening name fully inside the viewport */
+.intro-card h1{
+  white-space:nowrap;
+  width:100%;
+  max-width:100%;
+  overflow:visible;
+  font-size:clamp(3.6rem,20vw,8rem);
+  letter-spacing:-.025em;
+}
+@media(max-width:600px){
+  .intro-card{
+    width:min(720px,94vw);
+    padding-left:8px;
+    padding-right:8px;
+  }
+  .intro-card h1{
+    font-size:clamp(3.5rem,20vw,6.5rem);
+    letter-spacing:-.035em;
+  }
+}
+</style>
+
 </body>
 </html>
