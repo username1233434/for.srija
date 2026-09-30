@@ -1610,4 +1610,41 @@ body{font-family:'Quicksand','DM Sans',sans-serif;letter-spacing:.01em}
 }
 </style>
 
+
+<!-- TRANSLUCENT-PANELS-FIX-2026-10-01 -->
+<style>
+/* Let the animated neon sky remain visible through the page instead of using heavy opaque blocks. */
+.section{
+  background-color:rgba(5,6,11,.28)!important;
+  background-image:none!important;
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
+}
+.hero{background-color:rgba(30,18,42,.22)!important}
+.chapter{background-color:rgba(9,10,18,.24)!important}
+.memories{background-color:rgba(8,9,18,.28)!important}
+.reasons{background-color:rgba(24,13,34,.25)!important}
+.notes{background-color:rgba(8,10,20,.28)!important}
+.music{background-color:rgba(13,16,38,.23)!important}
+.letter{background-color:rgba(8,9,15,.27)!important}
+.party{background-color:rgba(30,13,28,.24)!important}
+.flowers{background-color:rgba(10,20,16,.24)!important}
+.candles{background-color:rgba(11,8,17,.26)!important}
+.wish{background-color:rgba(24,15,37,.24)!important}
+.final{background-color:rgba(5,6,11,.30)!important}
+
+/* Keep individual cards translucent too, so the moving lights show through subtly. */
+.reason-card,.track,.flower,.envelope{
+  background-color:rgba(255,255,255,.045)!important;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+@media(max-width:700px){
+  .section{
+    backdrop-filter:blur(1.5px);
+    -webkit-backdrop-filter:blur(1.5px);
+  }
+}
+</style>
+
 </body>\n</html>
