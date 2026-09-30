@@ -47,6 +47,29 @@ main{position:relative}.section{min-height:100svh;padding:100px 7vw;position:rel
 @keyframes confettiFall{0%{transform:translate3d(0,-10vh,0) rotate(0);opacity:0}8%{opacity:.8}100%{transform:translate3d(var(--drift),110vh,0) rotate(620deg);opacity:.15}}
 @keyframes openingConfettiFall{0%{transform:translate3d(0,-12vh,0) rotate(0);opacity:0}8%{opacity:1}100%{transform:translate3d(var(--drift),115vh,0) rotate(720deg);opacity:0}}
 @media(max-width:600px){.float-balloon{width:44px;height:60px}.fb1{left:1%;top:12%}.fb2{right:1%;top:18%}.fb3{left:2%;bottom:10%}.fb4{right:2%;bottom:8%}.fb5{right:7%;top:6%}}
+
+/* FINAL MOBILE OVERRIDES — intentionally last so desktop rules cannot win */
+@media screen and (max-width: 700px){
+ html,body{width:100%;max-width:100%;overflow-x:hidden}
+ .section{width:100%;min-height:100svh;padding:72px 20px}
+ .intro-card{width:100%;max-width:100%;padding:20px 12px}
+ .intro-line{font-size:1.15rem}.intro-card h1{font-size:clamp(4rem,24vw,7rem)}
+ .hero{padding:70px 20px}.hero h2{font-size:clamp(6rem,34vw,10rem)}
+ .chapter{padding:72px 20px}.chapter-copy{width:100%;max-width:100%}
+ .memories{padding:72px 14px}.section-intro{width:100%;max-width:100%;padding:0 6px}
+ .memory-stage{display:flex!important;flex-direction:column!important;width:100%!important;min-height:0!important;gap:30px!important;margin:0!important}
+ .memory{display:block!important;position:relative!important;width:100%!important;max-width:100%!important;left:auto!important;right:auto!important;top:auto!important;margin:0!important;padding:8px!important;transform:none!important}
+ .memory img,.memory video{width:100%!important;height:auto!important;max-width:100%!important;aspect-ratio:4/5!important;object-fit:cover!important}
+ .memory.video-card{grid-column:auto!important}.memory.video-card video{aspect-ratio:16/10!important}
+ .memory figcaption{font-size:1rem!important;padding:11px 5px!important}
+ .reason-wrap{width:100%;grid-template-columns:38px minmax(0,1fr);gap:10px;margin-top:40px}
+ .reason-card{min-width:0;padding:24px 16px;min-height:360px}.reason-text{font-size:1.55rem}
+ .notes h2,.music h2,.letter h2,.party h2,.flowers h2,.candles h2{font-size:clamp(2.7rem,12vw,4.5rem)}
+ .track{width:100%;flex-direction:column;align-items:stretch}.paper{width:100%;padding:24px 18px}
+ .envelope{width:min(100%,520px);height:220px}.cake-wrap{transform:scale(.88);transform-origin:top center;margin-bottom:-20px}
+ .flower-row{gap:10px}.flower{width:100px}.candle-row{gap:6px}
+ .final h2{font-size:clamp(3rem,14vw,5rem)}
+}
 </style>
 </head>
 <body>
