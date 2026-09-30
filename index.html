@@ -906,5 +906,167 @@ ready(function(){
   .wish-love h2{font-size:clamp(3.25rem,16vw,5.8rem)!important;}
 }
 </style>
+
+<!-- GIRLY-POP-KAWAII-NEON-UPGRADE-2026-10-01 -->
+<style>
+/* Colorful girly-pop typography */
+.eyebrow{
+  color:#ff9ed2!important;
+  text-shadow:0 0 12px #ff72b688;
+  font-family:'DM Sans',sans-serif;
+}
+.section h2,.hero h2{
+  background:linear-gradient(90deg,#fff,#ff9ed2 32%,#d8b5ff 62%,#8defff 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent!important;
+  text-shadow:0 0 28px #ff72b633;
+}
+.hero-deck,.accent{
+  color:#ffd0e8!important;
+  text-shadow:0 0 18px #ff72b655;
+}
+.memories h2{font-family:'Playfair Display',Georgia,serif!important;font-style:italic}
+.reasons h2,.wish h2{font-family:'Cormorant Garamond',Georgia,serif!important}
+.notes h2,.music h2{font-family:'Playfair Display',Georgia,serif!important;font-style:italic}
+.party h2,.flowers h2,.candles h2{font-family:'Cormorant Garamond',Georgia,serif!important}
+.final h2{font-family:'Playfair Display',Georgia,serif!important;font-style:italic}
+
+/* Extra neon ambience */
+.section{
+  box-shadow:inset 0 1px 0 #ffb4d718,inset 0 -1px 0 #8defff0d;
+}
+.section:before{
+  content:'';
+  position:absolute;
+  width:280px;height:280px;
+  border-radius:50%;
+  pointer-events:none;
+  background:radial-gradient(circle,#ff72b625,transparent 68%);
+  filter:blur(22px);
+  left:-120px;top:8%;
+  animation:kawaiiGlow 8s ease-in-out infinite alternate;
+}
+.section:after{
+  content:'';
+  position:absolute;
+  width:230px;height:230px;
+  border-radius:50%;
+  pointer-events:none;
+  background:radial-gradient(circle,#63e6ff1b,transparent 68%);
+  filter:blur(22px);
+  right:-100px;bottom:8%;
+  animation:kawaiiGlow 10s ease-in-out infinite alternate-reverse;
+}
+@keyframes kawaiiGlow{from{transform:scale(.85);opacity:.45}to{transform:scale(1.2);opacity:1}}
+
+/* Tiny kawaii stickers around the page */
+.kawaii-stickers{
+  position:fixed;inset:0;z-index:19;pointer-events:none;overflow:hidden;
+}
+.kawaii-sticker{
+  position:absolute;
+  font-size:clamp(1.2rem,4vw,2rem);
+  filter:drop-shadow(0 0 10px #ff72b677);
+  opacity:.82;
+  animation:stickerFloat 6s ease-in-out infinite;
+}
+.ks1{left:2.5%;top:31%;animation-delay:-1s}
+.ks2{right:2.5%;top:43%;animation-delay:-3s}
+.ks3{left:4%;bottom:27%;animation-delay:-4.5s}
+.ks4{right:4%;bottom:18%;animation-delay:-2s}
+.ks5{left:7%;top:12%;animation-delay:-5s}
+.ks6{right:7%;top:72%;animation-delay:-1.8s}
+@keyframes stickerFloat{
+  0%,100%{transform:translateY(0) rotate(-7deg) scale(1)}
+  50%{transform:translateY(-12px) rotate(7deg) scale(1.08)}
+}
+
+/* Cute pill-style labels */
+.section-intro .eyebrow,.music .eyebrow{
+  display:inline-block;
+  padding:7px 13px;
+  border:1px solid #ff9ed255;
+  border-radius:999px;
+  background:#ff72b60d;
+}
+
+/* More neon buttons */
+.btn{
+  border-color:#ffb4d766!important;
+  box-shadow:0 0 18px #ff72b622,inset 0 0 18px #ffffff05;
+}
+.btn:hover{
+  box-shadow:0 0 28px #ff72b655,0 0 55px #63e6ff22;
+}
+
+/* Cute memory-card glow */
+.memory{box-shadow:0 18px 40px #0008,0 0 24px #ff72b618}
+.memory.video-card{box-shadow:0 20px 55px #000a,0 0 30px #63e6ff18}
+
+/* Girly music disc */
+.disc{box-shadow:0 0 35px #ff72b655,0 0 90px #a982ff33}
+
+/* Neon love note lines */
+.note-list p{
+  color:#f8dff0!important;
+  text-shadow:0 0 14px #ff72b633;
+}
+.note-list p:nth-child(2n){color:#d8f5ff!important}
+.note-list p:nth-child(3n){color:#eadcff!important}
+
+/* Cute final heart */
+.final .heart{
+  text-shadow:0 0 18px #ff72b6,0 0 55px #ff72b677,0 0 100px #a982ff44;
+}
+
+/* Keep decorations out of the way on small screens */
+@media(max-width:600px){
+  .kawaii-sticker{font-size:1.25rem;opacity:.68}
+  .ks1{left:1%;top:34%}.ks2{right:1%;top:48%}
+  .ks3{left:2%;bottom:22%}.ks4{right:2%;bottom:12%}
+  .ks5{left:3%;top:16%}.ks6{right:3%;top:76%}
+}
+@media(prefers-reduced-motion:reduce){
+  .kawaii-sticker,.section:before,.section:after{animation:none}
+}
+</style>
+
+<div class="kawaii-stickers" aria-hidden="true">
+  <span class="kawaii-sticker ks1">🎀</span>
+  <span class="kawaii-sticker ks2">🐱💗</span>
+  <span class="kawaii-sticker ks3">🪽✨</span>
+  <span class="kawaii-sticker ks4">🌸</span>
+  <span class="kawaii-sticker ks5">♡</span>
+  <span class="kawaii-sticker ks6">🐰💫</span>
+</div>
+
+<script>
+(function(){
+  /* Give a few sections their own tiny kawaii accent without changing the content. */
+  const accents=[
+    ['.hero','🎀 ✦ ♡ ✦ 🎀'],
+    ['.memories','📸 ♡ 🎀'],
+    ['.reasons','💗 きゅん ♡'],
+    ['.notes','🌷 ✨'],
+    ['.music','🎧 💕'],
+    ['.letter','💌 🎀'],
+    ['.party','🎂 🎀 🐻'],
+    ['.flowers','🌸 🦋 🌷'],
+    ['.candles','🕯️ ✨ ♡'],
+    ['.wish','🌙 💗 ✨'],
+    ['.final','🎀 🐱 ♡']
+  ];
+  accents.forEach(([sel,txt])=>{
+    const el=document.querySelector(sel);
+    if(!el)return;
+    const d=document.createElement('div');
+    d.textContent=txt;
+    d.setAttribute('aria-hidden','true');
+    d.style.cssText='position:absolute;top:24px;right:7%;font-size:clamp(1rem,3vw,1.5rem);letter-spacing:.25em;opacity:.7;filter:drop-shadow(0 0 10px #ff72b677);pointer-events:none;z-index:2;';
+    el.appendChild(d);
+  });
+})();
+</script>
 </body>
 </html>
