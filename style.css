@@ -77,3 +77,25 @@
 @keyframes lightPulse{0%,100%{transform:scale(.9);opacity:.55}50%{transform:scale(1.12);opacity:1}}
 @keyframes openingConfettiFall{0%{transform:translate3d(0,-12vh,0) rotate(0);opacity:0}8%{opacity:1}100%{transform:translate3d(var(--drift),115vh,0) rotate(720deg);opacity:0}}
 @media(max-width:700px){.light-orb{width:55vw;height:55vw;filter:blur(40px)}}
+
+/* Cinematic memory slides */
+.memories{overflow:hidden}
+.memory-stage{max-width:1180px;min-height:0;margin:auto;display:flex;flex-direction:column;gap:12vh}
+.memory{position:relative!important;inset:auto!important;left:auto!important;right:auto!important;top:auto!important;width:min(92vw,980px)!important;min-height:78svh;margin:0 auto!important;padding:14px;background:#11121a;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(220px,.65fr);align-items:center;gap:clamp(28px,6vw,90px);box-shadow:0 30px 90px rgba(0,0,0,.35);transform:translateY(40px)!important;opacity:0}
+.memory.visible{transform:translateY(0)!important;opacity:1}
+.memory:nth-child(even){grid-template-columns:minmax(220px,.65fr) minmax(0,1.35fr)}
+.memory:nth-child(even) img{order:2}
+.memory:nth-child(even) figcaption{order:1}
+.memory img{width:100%;height:min(70svh,680px);aspect-ratio:auto;object-fit:contain;background:#090a10;filter:saturate(.94) contrast(.99)}
+.memory figcaption{padding:2rem clamp(1rem,3vw,2.5rem);font:italic clamp(1.3rem,2.4vw,2.15rem)/1.25 var(--serif);color:#d4cbc7}
+.memory figcaption::before{content:"";display:block;width:42px;height:1px;background:var(--rose);margin-bottom:1.5rem;opacity:.7}
+@media(max-width:700px){
+ .memory-stage{gap:8vh}
+ .memory{width:min(92vw,520px)!important;min-height:78svh;display:flex;flex-direction:column;justify-content:center;gap:1rem;padding:10px}
+ .memory:nth-child(even){display:flex}
+ .memory:nth-child(even) img{order:0}
+ .memory:nth-child(even) figcaption{order:0}
+ .memory img{height:auto;max-height:58svh;width:100%;object-fit:contain}
+ .memory figcaption{padding:1.2rem 1rem 1.6rem;font-size:1.35rem}
+ .memory figcaption::before{margin-bottom:1rem}
+}
