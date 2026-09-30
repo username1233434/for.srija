@@ -1498,4 +1498,73 @@ body{font-family:'Quicksand','DM Sans',sans-serif;letter-spacing:.01em}
   <i class="neon-shooter ns-cyan" style="left:112%;top:84%;--angle:-24deg;--travel-x:-170vw;--travel-y:43vh;--duration:8.6s;--delay:-2.2s"></i>
 </div>
 
+
+<!-- SELECTIVE-TRANSLUCENT-PANELS-2026-10-01 -->
+<style>
+/* Let the animated neon sky breathe through selected areas while keeping text readable. */
+.hero,
+.chapter,
+.memories,
+.reasons,
+.notes,
+.music,
+.letter,
+.party,
+.flowers,
+.candles,
+.wish{
+  background-color:rgba(8,9,18,.72)!important;
+  background-image:none!important;
+  backdrop-filter:blur(4px)!important;
+  -webkit-backdrop-filter:blur(4px)!important;
+}
+
+/* More glassy on the areas that benefit most from the moving background. */
+.hero{background-color:rgba(28,16,42,.58)!important}
+.chapter{background-color:rgba(7,10,22,.62)!important}
+.memories{background-color:rgba(8,9,18,.55)!important}
+.reasons{background-color:rgba(24,13,34,.58)!important}
+.notes{background-color:rgba(8,10,20,.56)!important}
+.music{background-color:rgba(13,16,38,.55)!important}
+.letter{background-color:rgba(8,9,15,.60)!important}
+.party{background-color:rgba(30,13,28,.58)!important}
+.flowers{background-color:rgba(10,20,16,.56)!important}
+.candles{background-color:rgba(11,8,17,.58)!important}
+.wish{background-color:rgba(24,15,37,.56)!important}
+.final{background-color:rgba(5,6,11,.72)!important}
+
+/* Keep the important content cards solid enough for contrast. */
+.reason-card,
+.track,
+.envelope{
+  background-color:rgba(15,16,29,.72)!important;
+  backdrop-filter:blur(10px)!important;
+  -webkit-backdrop-filter:blur(10px)!important;
+}
+
+/* The letter stays parchment rather than becoming transparent. */
+.paper{
+  background:
+    radial-gradient(circle at 12% 15%,#fff8d966,transparent 24%),
+    radial-gradient(circle at 88% 82%,#c78b4930,transparent 30%),
+    linear-gradient(135deg,#f8efd9,#ead6ad 48%,#f6e9c9)!important;
+  backdrop-filter:none!important;
+}
+
+/* On phones, slightly more opacity for readability over the moving stars. */
+@media(max-width:700px){
+  .hero{background-color:rgba(28,16,42,.66)!important}
+  .chapter{background-color:rgba(7,10,22,.70)!important}
+  .memories{background-color:rgba(8,9,18,.64)!important}
+  .reasons{background-color:rgba(24,13,34,.68)!important}
+  .notes{background-color:rgba(8,10,20,.66)!important}
+  .music{background-color:rgba(13,16,38,.65)!important}
+  .letter{background-color:rgba(8,9,15,.68)!important}
+  .party{background-color:rgba(30,13,28,.67)!important}
+  .flowers{background-color:rgba(10,20,16,.65)!important}
+  .candles{background-color:rgba(11,8,17,.67)!important}
+  .wish{background-color:rgba(24,15,37,.66)!important}
+}
+</style>
+
 </body>\n</html>
