@@ -1,5 +1,37 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#070810"><meta name="description" content="19, A Little Universe Called Srija"><title>19, A Little Universe Called Srija</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body><div class="party-decor" aria-hidden="true"><div class="ribbon ribbon-a"></div><div class="ribbon ribbon-b"></div><div class="ribbon ribbon-c"></div><div class="balloon balloon-pink"><span></span></div><div class="balloon balloon-lilac"><span></span></div><div class="balloon balloon-gold"><span></span></div><div class="balloon balloon-rose"><span></span></div><div class="balloon balloon-blue"><span></span></div><div class="confetti" id="confetti"></div></div>
-<div id="intro" class="intro"><canvas id="introStars"></canvas><div class="room-darkness"></div><div class="color-lights" aria-hidden="true"><i class="light-orb orb-pink"></i><i class="light-orb orb-blue"></i><i class="light-orb orb-purple"></i><i class="light-orb orb-gold"></i></div><canvas id="openingFireworks" aria-hidden="true"></canvas><div class="opening-confetti" id="openingConfetti" aria-hidden="true"></div><div class="intro-copy"><p class="eyebrow intro-before">30 · 09 · 2026 · 11:59 PM</p><p class="intro-line intro-before">So, how'd you feel if someone made something special just for you?</p><h1>Srija</h1><div class="intro-age" id="birthdayCountdown">19</div><p class="intro-sub">Wait for midnight.</p><button id="lightsBtn" class="text-button intro-before">Turn on the lights <span>↗</span></button><div class="midnight-clock" id="midnightClock">11:59:59</div><div class="midnight-date" id="midnightDate">30 September 2026</div><p class="midnight-message" id="midnightMessage">Wait for it.</p><button id="musicStartBtn" class="text-button music-start">Tap to start the music <span>♪</span></button><button id="enterBtn" class="text-button enter-after-midnight">Enter <span>↗</span></button></div></div>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#070810"><meta name="description" content="19, A Little Universe Called Srija"><title>19, A Little Universe Called Srija</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><script>
+window.startBirthdayExperience=function(e){
+  if(e){e.preventDefault();e.stopPropagation();}
+  const intro=document.getElementById('intro'),btn=document.getElementById('lightsBtn'),count=document.getElementById('birthdayCountdown'),clock=document.getElementById('midnightClock'),date=document.getElementById('midnightDate'),msg=document.getElementById('midnightMessage');
+  if(!intro||intro.dataset.started==='1')return;
+  intro.dataset.started='1';
+  if(btn){btn.disabled=true;btn.textContent='The lights are on ✨';}
+  intro.classList.add('lights-on');
+  let n=19;
+  if(count)count.textContent=n;
+  const timer=setInterval(()=>{
+    n--;
+    if(count)count.textContent=n>0?String(n):'';
+    if(n<=0){
+      clearInterval(timer);
+      intro.classList.add('midnight');
+      if(clock)clock.textContent='12:00:00';
+      if(date)date.textContent='1 October 2026';
+      if(msg)msg.textContent='Happy birthday, Srija.';
+      const c=document.getElementById('openingFireworks');
+      if(c&&c.getContext){
+        c.width=innerWidth*devicePixelRatio;c.height=innerHeight*devicePixelRatio;
+        const x=c.getContext('2d'),d=devicePixelRatio,W=innerWidth,H=innerHeight;
+        x.scale(d,d);let p=[];
+        for(let b=0;b<8;b++){let bx=W*(.1+Math.random()*.8),by=H*(.12+Math.random()*.5);for(let i=0;i<36;i++){let a=i*Math.PI*2/36,s=1+Math.random()*4;p.push({x:bx,y:by,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:1,c:['#ff5ca8','#54e8ff','#ffe45c','#a875ff','#63f0b2'][i%5]})}}
+        (function draw(){x.clearRect(0,0,W,H);p.forEach(q=>{q.x+=q.vx;q.y+=q.vy;q.vy+=.025;q.life-=.014;x.globalAlpha=Math.max(0,q.life);x.fillStyle=q.c;x.beginPath();x.arc(q.x,q.y,2,0,7);x.fill()});x.globalAlpha=1;if(p.some(q=>q.life>0))requestAnimationFrame(draw)})();
+      }
+      const music=document.getElementById('musicStartBtn');
+      if(music){music.style.display='inline-block';music.disabled=false;music.focus({preventScroll:true});}
+    }
+  },1000);
+};
+</script></head><body><div class="party-decor" aria-hidden="true"><div class="ribbon ribbon-a"></div><div class="ribbon ribbon-b"></div><div class="ribbon ribbon-c"></div><div class="balloon balloon-pink"><span></span></div><div class="balloon balloon-lilac"><span></span></div><div class="balloon balloon-gold"><span></span></div><div class="balloon balloon-rose"><span></span></div><div class="balloon balloon-blue"><span></span></div><div class="confetti" id="confetti"></div></div>
+<div id="intro" class="intro"><canvas id="introStars"></canvas><div class="room-darkness"></div><div class="color-lights" aria-hidden="true"><i class="light-orb orb-pink"></i><i class="light-orb orb-blue"></i><i class="light-orb orb-purple"></i><i class="light-orb orb-gold"></i></div><canvas id="openingFireworks" aria-hidden="true"></canvas><div class="opening-confetti" id="openingConfetti" aria-hidden="true"></div><div class="intro-copy"><p class="eyebrow intro-before">30 · 09 · 2026 · 11:59 PM</p><p class="intro-line intro-before">So, how'd you feel if someone made something special just for you?</p><h1>Srija</h1><div class="intro-age" id="birthdayCountdown">19</div><p class="intro-sub">Wait for midnight.</p><button id="lightsBtn" type="button" onclick="startBirthdayExperience(event)" class="text-button intro-before">Turn on the lights <span>↗</span></button><div class="midnight-clock" id="midnightClock">11:59:59</div><div class="midnight-date" id="midnightDate">30 September 2026</div><p class="midnight-message" id="midnightMessage">Wait for it.</p><button id="musicStartBtn" class="text-button music-start">Tap to start the music <span>♪</span></button><button id="enterBtn" class="text-button enter-after-midnight">Enter <span>↗</span></button></div></div>
 <canvas id="ambientStars" class="ambient-stars" aria-hidden="true"></canvas><main id="story" aria-hidden="true">
 <section class="hero section"><div class="starfield"></div><div class="hero-copy"><p class="eyebrow">For Srija</p><h2>19.</h2><p class="hero-deck">Your last teenage year.</p><p class="hero-small">Before 20 arrives,<br>let's keep a little piece of 19 forever.</p><button class="scroll-cue" id="keepGoing" type="button" aria-label="Continue to the next chapter"><span></span>keep going<small>tap to continue</small></button></div><button class="secret-star" aria-label="A little secret">✦</button></section>
 <section class="chapter chapter-world"><div class="chapter-number">01</div><div class="chapter-heading"><p class="eyebrow">her world</p><h2>A little universe<br>called Srija.</h2></div><div class="orbit-copy"><p>There are people who simply exist in your life.</p><p>And then there are people who quietly change the shape of it.</p><p class="accent">You did that.</p></div><div class="constellation" aria-hidden="true"><span></span><span></span><span></span><span></span><i></i></div></section>
