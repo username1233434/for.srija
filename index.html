@@ -222,8 +222,6 @@ window.addEventListener('error',e=>{console.error(e);toast('Something on the pag
 try{const candles=$('#candles');for(let i=0;i<19;i++){const c=document.createElement('div');c.className='candle';candles.appendChild(c)}$('#blow').addEventListener('click',()=>{$$('.candle').forEach(c=>c.classList.add('out'));$('#candleMsg').textContent='Wish made. Candles out. ✨ I hope it comes true.';toast('Wish locked in ✨')})}catch(err){console.error('candle init failed',err)}
 $('#secret').addEventListener('click',()=>toast('Secret message: you are ridiculously loved. ♡'));
 
-document.addEventListener('click',e=>{const b=e.target.closest && e.target.closest('#cakeBtn,.balloon,#nextReason,#envelope,#blow');if(!b)return;if(b.id==='cakeBtn'){$('#cakeMsg').textContent='Cake cut! 🍰 Happy birthday, birthday girl!';toast('Cake successfully attacked 🍰')}else if(b.classList.contains('balloon')){b.classList.add('popped');setTimeout(()=>b.remove(),250)}else if(b.id==='nextReason'){ri=(ri+1)%19;renderReason()}else if(b.id==='envelope'){$('#envelope').classList.toggle('open');$('#paper').classList.toggle('open')}else if(b.id==='blow'){$('.candle').forEach(c=>c.classList.add('out'));$('#candleMsg').textContent='Wish made. Candles out. ✨ I hope it comes true.';toast('Wish locked in ✨')}});
-
 window.addEventListener('error',e=>{console.error(e);toast('Something on the page hiccupped — keep going, the rest is still here ♡')});
 })();
 </script>
