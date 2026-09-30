@@ -446,5 +446,47 @@ ready(function(){
 .wish-love h2 span{display:block;font-size:clamp(3rem,11vw,6rem);margin-top:18px;animation:pulse 1.5s infinite}
 @media(max-width:600px){.wish-love{margin-top:clamp(120px,20vh,210px);padding-bottom:55px}.wish-love h2{font-size:clamp(3.4rem,17vw,5.8rem)}}
 </style>
+
+<!-- MIDNIGHT-BIRTHDAY-SEQUENCE-2026-10-01 -->
+<style>
+#midnightOverlay{position:fixed;inset:0;z-index:999;display:none;place-items:center;background:#05060b;overflow:hidden}
+#midnightOverlay.active{display:grid}
+.midnight-stars{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:38px 38px;opacity:.45}
+.midnight-content{position:relative;z-index:5;text-align:center}
+.midnight-count{font-size:clamp(6rem,28vw,13rem);font-weight:700;color:#fff;line-height:1;text-shadow:0 0 40px #fff8}
+.midnight-date{font-family:Georgia,serif;font-size:clamp(1.1rem,4vw,2rem);color:#ffb4d7;letter-spacing:.12em}
+.midnight-happy{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.8rem,11vw,6rem);color:#fff;opacity:0}
+.midnight-confetti,.midnight-balloons{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.midnight-confetti i{position:absolute;top:-10%;width:8px;height:16px;opacity:0;animation:midConf 4s linear forwards}
+.midnight-balloon{position:absolute;width:58px;height:76px;border-radius:50%;opacity:0;animation:midBall 5s ease-out forwards}
+@keyframes midConf{0%{transform:translateY(-10vh) rotate(0);opacity:1}100%{transform:translateY(115vh) rotate(720deg);opacity:.15}}
+@keyframes midBall{0%{transform:translateY(-110vh) scale(.8);opacity:0}18%{opacity:1}100%{transform:translateY(115vh) scale(1) rotate(10deg);opacity:.85}}
+@keyframes midFire{0%{transform:scale(.1);opacity:1}100%{transform:scale(1.8);opacity:0}}
+.midnight-fire{position:absolute;width:8px;height:8px;border-radius:50%;animation:midFire .9s ease-out forwards}
+</style>
+<div id="midnightOverlay" aria-hidden="true">
+ <div class="midnight-stars"></div><div class="midnight-confetti"></div><div class="midnight-balloons"></div>
+ <div class="midnight-content"><div class="midnight-count" id="midnightCount">19</div><div class="midnight-date" id="midnightDate">30 September</div><div class="midnight-happy" id="midnightHappy">HAPPY BIRTHDAY, SRIJA ♡</div></div>
+</div>
+<script>
+(function(){
+ var overlay=document.getElementById('midnightOverlay'),count=document.getElementById('midnightCount'),date=document.getElementById('midnightDate'),happy=document.getElementById('midnightHappy');
+ if(!overlay)return;
+ function celebrate(){
+  var colors=['#ff72b6','#ffe27a','#63e6ff','#a982ff','#63f0b2','#ff8f70'];
+  var cf=overlay.querySelector('.midnight-confetti');
+  for(var i=0;i<120;i++){var p=document.createElement('i');p.style.left=Math.random()*100+'%';p.style.background=colors[i%colors.length];p.style.animationDelay=(Math.random()*1.2)+'s';cf.appendChild(p)}
+  var bl=overlay.querySelector('.midnight-balloons');
+  for(var j=0;j<12;j++){var b=document.createElement('span');b.className='midnight-balloon';b.style.left=(Math.random()*92+2)+'%';b.style.animationDelay=(Math.random()*1.5)+'s';b.style.background=colors[j%colors.length];bl.appendChild(b)}
+  for(var k=0;k<8;k++){setTimeout(function(){var x=document.createElement('span');x.className='midnight-fire';x.style.left=(10+Math.random()*80)+'%';x.style.top=(10+Math.random()*45)+'%';x.style.background=colors[Math.floor(Math.random()*colors.length)];overlay.appendChild(x);setTimeout(function(){x.remove()},950)},k*260)}
+  date.textContent='1 October';count.style.display='none';happy.style.opacity='1';
+ }
+ window.startMidnightBirthday=function(){
+  overlay.classList.add('active');overlay.setAttribute('aria-hidden','false');
+  var n=19;count.textContent=n;date.textContent='30 September';happy.style.opacity='0';
+  var t=setInterval(function(){n--;if(n>0){count.textContent=n}else{clearInterval(t);celebrate()}},1000);
+ };
+})();
+</script>
 </body>
 </html>
