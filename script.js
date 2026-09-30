@@ -60,7 +60,7 @@ if(cutCake&&birthdayCake){
     launchPartyConfetti();
   });
 }
-$$$('.party-balloon').forEach((balloon,index)=>{
+$('.party-balloon').forEach((balloon,index)=>{
   balloon.addEventListener('click',()=>{
     if(balloon.classList.contains('popped'))return;
     balloon.classList.add('popped');
