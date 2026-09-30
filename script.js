@@ -21,6 +21,22 @@ const intro=$('#intro'); const lightsBtn=$('#lightsBtn'); const midnightClock=$(
 let openingStarted=false;
 lightsBtn.addEventListener('click',()=>{if(openingStarted)return;openingStarted=true;intro.classList.add('lights-on');lightsBtn.textContent='The lights are on';setTimeout(()=>{intro.classList.add('midnight');let ticks=0;const times=['11:59:59','12:00:00'];const timer=setInterval(()=>{midnightClock.textContent=times[Math.min(ticks,1)];if(ticks===1){clearInterval(timer);midnightDate.textContent='1 October 2026';midnightMessage.textContent='Happy birthday, Srija.'}},1100);ticks=1},1600)});
 musicStartBtn.addEventListener('click',async()=>{intro.classList.add('music-ready');try{await audio.play();musicLabel.textContent='pause the night';status.textContent='City of Stars · playing';musicStartBtn.textContent='The night has begun ♪';setTimeout(()=>intro.classList.add('exit'),1400)}catch{status.textContent='Tap again to start the music.'}});
+const journeyLines=[
+"Here’s to a happy journey ahead, Srija. I hope this new phase of your life brings you places you never imagined you’d reach.",
+"A new chapter does not have to be perfect to be beautiful. I hope you enjoy every little part of becoming who you are meant to be.",
+"Things may not always get easier. But I hope you become strong enough to face them without letting them take away your peace.",
+"I hope life goes a little easier on you. And on the days it doesn’t, I hope you remember how capable you are.",
+"I hope you never feel like you have to have everything figured out. You’re allowed to grow slowly, change your mind, and find your way.",
+"There will be new people, new places, new responsibilities, new dreams, and probably a few unexpected turns. I hope you enjoy the journey through all of them.",
+"I’m genuinely looking forward to seeing where life takes you, and to all the versions of you that you’re still going to become.",
+"I hope you collect more moments that make you laugh until your stomach hurts, more sunsets worth stopping for, and more memories you’ll want to keep forever.",
+"Whatever this next phase brings, I hope you meet it with courage, curiosity, and that little bit of madness that makes you you.",
+"And when life feels heavy, I hope you remember that a difficult day is only a difficult day. It does not define the life waiting for you.",
+"Here’s to growing older without losing the parts of yourself that make you smile.",
+"Here’s to the dreams you haven’t told anyone about yet, the places you haven’t seen, and the memories you haven’t made.",
+"I’m looking forward to all of it. The easy days, the difficult ones, the unexpected ones, and especially the ordinary ones that somehow become our favourites."
+];
+const journeyBox=document.querySelector('#journeyLines'); if(journeyBox){journeyBox.innerHTML=journeyLines.map(x=>'<p>'+x+'</p>').join('');}
 const prefersReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function setupStars(id,count){
   const canvas=document.getElementById(id); if(!canvas)return;
