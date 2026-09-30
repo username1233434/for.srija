@@ -41,3 +41,21 @@
 .romantic-lines p{font:italic clamp(1.35rem,3vw,2rem)/1.45 var(--serif);color:#c9c0bd;margin:0}
 .romantic-lines p:nth-child(2),.romantic-lines p:nth-child(4),.romantic-lines p:nth-child(6){color:#eee7df}
 @media(max-width:700px){.memory-stage{grid-template-columns:1fr;gap:32px;padding-bottom:4rem}.memory{width:100%!important}.memory:nth-child(3n+2),.memory:nth-child(3n){margin-top:0}.memory img{max-height:none}.love-notes{padding:12vh 7vw}.romantic-lines{gap:1.8rem}}
+
+/* cinematic midnight opening */
+.intro{background:#000}
+.room-darkness{position:absolute;inset:0;background:radial-gradient(circle at 50% 52%,rgba(255,220,170,.04),transparent 20%),#000;transition:background 2.2s ease,filter 2.2s ease}
+.intro.lights-on .room-darkness{background:radial-gradient(circle at 50% 45%,rgba(242,198,160,.2),transparent 18%),radial-gradient(circle at 50% 100%,rgba(120,90,100,.2),transparent 48%),linear-gradient(#15121a,#08080d);filter:brightness(1.25)}
+.intro-copy{transition:opacity .8s ease}
+.intro.lights-on .intro-before{opacity:.55}
+.intro.lights-on h1,.intro.lights-on .intro-age,.intro.lights-on .intro-sub{opacity:1}
+.midnight-clock,.midnight-date,.midnight-message,.music-start,.enter-after-midnight{display:none}
+.intro.midnight .intro-before,.intro.midnight .intro-sub{opacity:0;transition:opacity .5s}
+.intro.midnight .midnight-clock{display:block;font:500 clamp(4rem,13vw,9rem)/.8 var(--serif);letter-spacing:.04em;color:#f1e7dd;animation:clockStrike .8s both}
+.intro.midnight .midnight-date{display:block;margin-top:1.2rem;font:.95rem/1.5 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:#d7c5bd;animation:fadeUp 1s .5s both}
+.intro.midnight .midnight-message{display:block;margin:1.4rem 0 0;font:italic 1.35rem var(--serif);color:#e5c5cb;animation:fadeUp 1s 1s both}
+.intro.midnight .music-start{display:inline-block;animation:fadeUp 1s 1.8s both}
+.intro.music-ready .midnight-clock,.intro.music-ready .midnight-date,.intro.music-ready .midnight-message{opacity:.35;transition:opacity .6s}
+.intro.music-ready .music-start{border-bottom-color:var(--rose);opacity:1}
+@keyframes clockStrike{0%{transform:scale(1.18);opacity:0}45%{transform:scale(.96);opacity:1}70%{transform:scale(1.03)}100%{transform:scale(1)}}
+@media(max-width:700px){.intro-copy{padding:1.5rem}.midnight-clock{font-size:4rem}}
