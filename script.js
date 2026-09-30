@@ -141,7 +141,7 @@ window.addEventListener('devicemotion',e=>{
 if(candleSection){
   candleSection.addEventListener('touchstart',()=>{if(!motionEnabled)enableMotion()},{passive:true});
 }
-$('#secretHeart')?.addEventListener('click',()=>toast('There are still so many little things I love about you.'));$('.secret-star').forEach(x=>x.addEventListener('click',()=>toast('You found one. I knew you would.')));
+$('#secretHeart')?.addEventListener('click',()=>toast('There are still so many little things I love about you.'));$$('.secret-star').forEach(x=>x.addEventListener('click',()=>toast('You found one. I knew you would.')));
 const intro=$('#intro');const lightsBtn=$('#lightsBtn');const midnightClock=$('#midnightClock');const midnightDate=$('#midnightDate');const midnightMessage=$('#midnightMessage');const musicStartBtn=$('#musicStartBtn');const enterBtn=$('#enterBtn');const countdown=$('#birthdayCountdown');let openingStarted=false;let openingTimer=null;
 function revealStory(){intro.classList.add('exit');$('#story').setAttribute('aria-hidden','false');setTimeout(()=>document.querySelector('.hero')?.scrollIntoView({behavior:'smooth',block:'start'}),120);}
 function finishMidnight(){if(intro.classList.contains('midnight'))return;clearInterval(openingTimer);if(countdown)countdown.textContent='';intro.classList.add('midnight');midnightClock.textContent='12:00:00';midnightDate.textContent='1 October 2026';midnightMessage.textContent='Happy birthday, Srija.';try{launchMidnightFireworks()}catch(e){console.warn(e)}if(musicStartBtn)musicStartBtn.focus({preventScroll:true});}
