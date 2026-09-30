@@ -61,3 +61,19 @@
 @media(max-width:700px){.intro-copy{padding:1.5rem}.midnight-clock{font-size:4rem}}
 
 .scroll-cue{appearance:none;border:0;background:transparent;font:inherit;color:#777;cursor:pointer;padding:0;margin-top:4rem;letter-spacing:.2em;text-transform:uppercase}.scroll-cue small{display:block;margin-top:.65rem;font-size:.5rem;letter-spacing:.16em;color:#555;opacity:.8}.scroll-cue:hover{color:#c8c0bd}.scroll-cue:hover span{height:58px;background:var(--rose)}
+
+#openingFireworks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:0;transition:opacity .8s}
+.opening-confetti{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+.opening-confetti i{position:absolute;top:-12%;width:7px;height:14px;border-radius:2px;opacity:0}
+.intro.lights-on #openingFireworks{opacity:1}
+.color-lights{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.2s}
+.intro.lights-on .color-lights{opacity:1}
+.light-orb{position:absolute;width:35vw;height:35vw;max-width:500px;max-height:500px;border-radius:50%;filter:blur(55px);mix-blend-mode:screen;animation:lightPulse 3s ease-in-out infinite}
+.orb-pink{left:-8%;top:8%;background:rgba(255,64,150,.42)}
+.orb-blue{right:-10%;top:4%;background:rgba(45,130,255,.38);animation-delay:.5s}
+.orb-purple{left:32%;bottom:-20%;background:rgba(170,65,255,.35);animation-delay:1s}
+.orb-gold{right:25%;bottom:-18%;background:rgba(255,190,55,.3);animation-delay:1.5s}
+.intro.lights-on .intro-copy{z-index:5}
+@keyframes lightPulse{0%,100%{transform:scale(.9);opacity:.55}50%{transform:scale(1.12);opacity:1}}
+@keyframes openingConfettiFall{0%{transform:translate3d(0,-12vh,0) rotate(0);opacity:0}8%{opacity:1}100%{transform:translate3d(var(--drift),115vh,0) rotate(720deg);opacity:0}}
+@media(max-width:700px){.light-orb{width:55vw;height:55vw;filter:blur(40px)}}
