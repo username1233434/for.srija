@@ -643,5 +643,115 @@ ready(function(){
 }
 </style>
 
+
+<!-- EASTER-EGGS-2026-10-01 -->
+<style>
+.easter-overlay{
+  position:fixed;inset:0;z-index:9999;display:grid;place-items:center;
+  padding:24px;background:rgba(3,4,10,.82);backdrop-filter:blur(14px);
+  opacity:0;pointer-events:none;transition:opacity .35s ease;
+}
+.easter-overlay.show{opacity:1;pointer-events:auto}
+.easter-card{
+  width:min(92vw,520px);padding:34px 24px;text-align:center;
+  border:1px solid #ffb4d755;border-radius:28px;
+  background:linear-gradient(145deg,#21152d,#0b0c15);
+  box-shadow:0 25px 80px #0009,0 0 50px #ff72b622;
+  transform:translateY(18px) scale(.96);transition:transform .4s ease;
+}
+.easter-overlay.show .easter-card{transform:none}
+.easter-card .egg-symbol{font-size:2.5rem;color:#ffd978;animation:pulse 1.6s infinite}
+.easter-card h3{font-family:'Playfair Display',Georgia,serif;font-size:2.2rem;font-weight:500;color:#ffb4d7;margin:12px 0}
+.easter-card p{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.35rem;line-height:1.5;color:#eee}
+.easter-close{margin-top:16px}
+.secret.found{animation:pulse .7s 3}
+</style>
+
+<div class="easter-overlay" id="easterOverlay" role="dialog" aria-modal="true" aria-label="Secret message">
+  <div class="easter-card">
+    <div class="egg-symbol">✦ ♡ ✦</div>
+    <h3 id="eggTitle">You found one.</h3>
+    <p id="eggText">There are little pieces of this universe hiding everywhere.</p>
+    <button class="btn easter-close" id="easterClose">keep exploring ♡</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const overlay=document.getElementById('easterOverlay');
+  const title=document.getElementById('eggTitle');
+  const text=document.getElementById('eggText');
+  const close=document.getElementById('easterClose');
+  const secret=document.getElementById('secret');
+  if(!overlay)return;
+
+  function egg(t,m){
+    title.textContent=t;
+    text.textContent=m;
+    overlay.classList.add('show');
+    if(secret)secret.classList.add('found');
+  }
+  function hideEgg(){overlay.classList.remove('show')}
+  close.addEventListener('click',hideEgg);
+  overlay.addEventListener('click',e=>{if(e.target===overlay)hideEgg()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')hideEgg()});
+
+  /* 1 — the tiny star: tap it three times */
+  let starTaps=0,starTimer;
+  secret?.addEventListener('click',()=>{
+    starTaps++;
+    clearTimeout(starTimer);
+    starTimer=setTimeout(()=>starTaps=0,1300);
+    if(starTaps===3){
+      starTaps=0;
+      egg('A tiny secret ♡','You found the little star. Srija gets an extra piece of love that nobody else gets.');
+    }
+  });
+
+  /* 2 — double-tap her name on the opening screen */
+  document.querySelector('#intro h1')?.addEventListener('dblclick',()=>{
+    egg('Psst…','If you ever wonder how much thought went into this, the answer is: way too much. And I would do it again.');
+  });
+
+  /* 3 — tap the same candle three times */
+  let candleTaps=0,lastCandle=null,candleTimer;
+  document.getElementById('candles')?.addEventListener('click',e=>{
+    const candle=e.target.closest?.('.candle');
+    if(!candle)return;
+    clearTimeout(candleTimer);
+    if(candle!==lastCandle){candleTaps=0;lastCandle=candle}
+    candleTaps++;
+    candleTimer=setTimeout(()=>{candleTaps=0;lastCandle=null},1200);
+    if(candleTaps===3){
+      candleTaps=0;
+      egg('One more wish ✨','Okay, that candle was suspiciously determined to keep a secret.');
+    }
+  });
+
+  /* 4 — tap the final heart seven times */
+  let heartTaps=0,heartTimer;
+  document.querySelector('.final .heart')?.addEventListener('click',()=>{
+    heartTaps++;
+    clearTimeout(heartTimer);
+    heartTimer=setTimeout(()=>heartTaps=0,1800);
+    if(heartTaps===7){
+      heartTaps=0;
+      egg('The last secret ♡','If you made it all the way here… you are officially ridiculously loved.');
+    }
+  });
+
+  /* 5 — type SRIJA anywhere on the page */
+  let typed='';
+  document.addEventListener('keydown',e=>{
+    if(e.key.length!==1 || !/[a-z]/i.test(e.key))return;
+    typed=(typed+e.key.toLowerCase()).slice(-5);
+    if(typed==='srija'){
+      typed='';
+      egg('You said her name ♡','Of course that had to be a secret.');
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
