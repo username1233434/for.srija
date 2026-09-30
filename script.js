@@ -41,10 +41,10 @@ const audio=$('#song');
 const cityFile="'City of Stars' (Duet ft. Ryan Gosling, Emma Stone) - La La Land Original Motion Picture Soundtrack - (320 Kbps).mp3";
 const angelFile="Pretty Little Angel Eyes.mp3";
 let currentTrack='city';
+const status=$('#musicStatus');
 function setTrack(kind){const file=kind==='angel'?angelFile:cityFile;currentTrack=kind;audio.src='assets/audio/'+encodeURIComponent(file);audio.load();if(kind==='angel'){status.textContent='Pretty Little Angel Eyes · ready';$('#musicEyebrow').textContent='05 · pretty little angel eyes';$('#musicTitle').innerHTML='A little sunshine,<br>a little mischief.';$('#musicDescription').textContent='The dreamy part was City of Stars. This is the part where the night gets brighter, happier, and a little more us.';$('#trackName').textContent='Pretty Little Angel Eyes';$('#trackMood').textContent='jolly · romantic · for dancing around the room';$('#musicLabel').textContent='play the happy part'}else{status.textContent='City of Stars · ready'}}
 function switchToAngelEyes(){setTrack('angel');}
 setTrack('city');
-const status=$('#musicStatus');
 audio.addEventListener('loadedmetadata',()=>{status.textContent=currentTrack==='angel'?'Pretty Little Angel Eyes · ready':'City of Stars · ready'});
 audio.addEventListener('error',()=>status.textContent='The soundtrack could not be loaded.');
 $('#musicToggle').addEventListener('click',async()=>{if(audio.paused){try{await audio.play();$('#musicLabel').textContent=currentTrack==='angel'?'pause the happy part':'pause the night';status.textContent=currentTrack==='angel'?'Pretty Little Angel Eyes · playing':'City of Stars · playing'}catch{status.textContent='Playback was blocked. Tap again to start it.'}}else{audio.pause();$('#musicLabel').textContent=currentTrack==='angel'?'play the happy part':'play the night';status.textContent=currentTrack==='angel'?'Pretty Little Angel Eyes · paused':'City of Stars · paused'}});
