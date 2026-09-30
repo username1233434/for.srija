@@ -129,6 +129,11 @@ const photos=[
 ['VID-20260711-WA0203.mp4','some moments move too — press play.','video'],
 ['VID-20260711-WA0204.mp4','some little moments deserve a second look.','video'],
 ['signal-2026-09-01-19-37-32-765.mp4','a tiny moving piece of September.','video'],
+['VID-20260711-WA0221.mp4','another little moving memory.','root-video'],
+['VID-20260711-WA0227.mp4','one more moment worth keeping.','root-video'],
+['VID-20260910-WA0149.mp4','a little September memory.','root-video'],
+['VID-20260916-WA0225.mp4','another tiny piece of the story.','root-video'],
+['VID-20260920-WA0014.mp4','one last moving memory before 19.','root-video'],
 ['IMG-20260908-WA0052~2.jpg','September brought a little more of your sunshine.'],
 ['IMG-20260910-WA0139.jpg','another little glimpse of you.'],
 ['Peachy_20260911_024836584.jpg','you make cute look dangerously easy.'],
@@ -145,11 +150,11 @@ const stage=$('#memoryStage');
 photos.forEach((m,i)=>{
  const f=document.createElement('figure');f.className='memory';
  const src='assets/photos/'+encodeURIComponent(m[0]).replace(/%2F/g,'/');
- if(m[2]==='video')f.innerHTML='<div class="video-wrap"><video controls playsinline preload="metadata" src="'+src+'"></video><span class="badge">moving memory · '+String(i+1).padStart(2,'0')+'</span></div><figcaption>'+m[1]+'</figcaption>';
+ if(m[2]==='video'||m[2]==='root-video'){const videoSrc=m[2]==='root-video'?'': 'assets/photos/'; const finalSrc=(videoSrc+m[0]).replace(/ /g,'%20'); f.innerHTML='<div class="video-wrap"><video controls playsinline preload="metadata" src="'+finalSrc+'"></video><span class="badge">moving memory · '+String(i+1).padStart(2,'0')+'</span></div><figcaption>'+m[1]+'</figcaption>';} 
  else f.innerHTML='<img loading="lazy" src="'+src+'" alt="A memory of Srija"><figcaption>'+m[1]+'</figcaption>';
  stage.appendChild(f);
 });
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.08});$$('.memory').forEach(x=>io.observe(x));
+if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.08});$('.memory').forEach(x=>io.observe(x));}else{$('.memory').forEach(x=>x.classList.add('show'));}
 
 const reasons=[
 'I love your oompa loompa 😋.',
