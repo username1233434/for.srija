@@ -78,3 +78,5 @@ setupStars('ambientStars',220);
     box.appendChild(p);
   }
 })();
+
+const keepGoing=$('#keepGoing');if(keepGoing)keepGoing.addEventListener('click',()=>document.querySelector('.chapter-world')?.scrollIntoView({behavior:'smooth',block:'start'}));
