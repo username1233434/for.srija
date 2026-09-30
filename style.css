@@ -315,3 +315,5 @@ body{background:#05060d}
 @keyframes neonBorder{0%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(55deg)}100%{filter:hue-rotate(0deg)}}
 @keyframes floatSpark{0%{transform:translate(-50%,-50%) scale(.4) rotate(0);opacity:0}15%{opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.1) rotate(180deg);opacity:0}}
 @media(max-width:700px){.neon-star{box-shadow:0 0 4px var(--star),0 0 10px var(--star)}.reason-card:after,.track-card:after,.letter-paper:after{opacity:.3}}
+
+.intro.midnight .enter-after-midnight{display:inline-block;animation:fadeUp 1s 2.3s both;margin-left:.75rem}.intro.midnight .music-start{display:inline-block}
