@@ -342,5 +342,99 @@ try{
  });
 }catch(e){console.error(e)}
 })();
-</script>\n</body>
+</script>\n
+<!-- FINAL-INTERACTION-PATCH-2026-10-01 -->
+<style>
+/* Final interaction reliability patch */
+.candle-row{min-height:110px;visibility:visible!important;opacity:1!important}
+.candle{display:block!important;visibility:visible!important;opacity:1!important}
+.balloons .balloon{display:block!important;visibility:visible!important;opacity:1;transform-origin:center bottom}
+.balloons .balloon.popped{animation:balloonPopFinal .32s ease-out forwards!important}
+@keyframes balloonPopFinal{0%{transform:scale(1);opacity:1}55%{transform:scale(1.35);opacity:.9}100%{transform:scale(.05);opacity:0}}
+</style>
+<script>
+(function(){
+'use strict';
+function ready(fn){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn,{once:true});else fn();}
+ready(function(){
+  var audio=document.getElementById('audio');
+  var play=document.getElementById('play');
+  var status=document.getElementById('audioStatus');
+  var second='assets/audio/Pretty%20Little%20Angel%20Eyes.mp3';
+  var cityFragment='City%20of%20Stars';
+
+  function playSecond(){
+    if(!audio)return;
+    audio.src=second;
+    audio.load();
+    var p=audio.play();
+    if(p&&p.catch)p.catch(function(){});
+    if(play)play.textContent='pause ♪';
+    if(status)status.textContent='Pretty Little Angel Eyes · playing ♡';
+  }
+
+  if(audio){
+    audio.addEventListener('ended',function(){
+      if(!decodeURIComponent(audio.src).includes('Pretty Little Angel Eyes')) playSecond();
+    });
+  }
+
+  /* Make the second-song button work even if an earlier listener failed. */
+  document.addEventListener('click',function(e){
+    var t=e.target;
+    if(t && (t.id==='play' || t.closest && t.closest('#play'))){
+      e.preventDefault();
+      if(!audio)return;
+      if(audio.paused){
+        if(!decodeURIComponent(audio.src).includes('Pretty Little Angel Eyes')){
+          playSecond();
+        }else{
+          var p=audio.play(); if(p&&p.catch)p.catch(function(){});
+          t.textContent='pause ♪';
+          if(status)status.textContent='Pretty Little Angel Eyes · playing ♡';
+        }
+      }else{
+        audio.pause();
+        t.textContent='play ♪';
+        if(status)status.textContent='paused';
+      }
+    }
+  },true);
+
+  /* Rebuild the 19 candles if the container is empty, and make blow reliable. */
+  var candleBox=document.getElementById('candles');
+  if(candleBox && candleBox.children.length<19){
+    candleBox.innerHTML='';
+    for(var i=0;i<19;i++){
+      var c=document.createElement('div');
+      c.className='candle';
+      c.setAttribute('aria-label','candle '+(i+1));
+      candleBox.appendChild(c);
+    }
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target;
+    if(t && (t.id==='blow' || (t.closest && t.closest('#blow')))){
+      e.preventDefault();
+      var candles=document.querySelectorAll('#candles .candle');
+      candles.forEach(function(c){c.classList.add('out');});
+      var msg=document.getElementById('candleMsg');
+      if(msg)msg.textContent='Wish made. Candles out. ✨ I hope it comes true.';
+    }
+  },true);
+
+  /* Balloons: click -> pop -> remove, with event delegation. */
+  document.addEventListener('click',function(e){
+    var b=e.target && e.target.closest ? e.target.closest('.balloons .balloon') : null;
+    if(!b)return;
+    e.preventDefault();
+    if(b.dataset.popped==='1')return;
+    b.dataset.popped='1';
+    b.classList.add('popped');
+    setTimeout(function(){if(b.parentNode)b.parentNode.removeChild(b);},340);
+  },true);
+});
+})();
+</script>
+</body>
 </html>
