@@ -229,3 +229,33 @@ $$('.flower-bloom').forEach(btn=>{
     }
   });
 });
+
+(function addNeonStars(){
+  const targets=['.hero','.chapter-world','.memories','.reasons','.love-notes','.music','.letter','.flowers','.party','.candles','.wish','.final'];
+  const colors=['#ff4fa3','#42e8ff','#a875ff','#ffe45c','#54f5b5','#5f9dff'];
+  targets.forEach((selector,si)=>{
+    const section=document.querySelector(selector);if(!section)return;
+    const field=document.createElement('div');field.className='neon-starfield';field.setAttribute('aria-hidden','true');
+    const count=window.innerWidth<700?10:18;
+    for(let i=0;i<count;i++){
+      const star=document.createElement('i');star.className='neon-star';
+      star.style.setProperty('--x',Math.random()*100+'%');star.style.setProperty('--y',Math.random()*100+'%');
+      star.style.setProperty('--size',(Math.random()*3+1)+'px');star.style.setProperty('--star',colors[(i+si)%colors.length]);
+      star.style.setProperty('--speed',(1.8+Math.random()*3.5)+'s');star.style.setProperty('--delay',(-Math.random()*4)+'s');
+      field.appendChild(star);
+    }
+    section.appendChild(field);
+  });
+})();
+function sparkleAt(x,y){
+  const chars=['✦','✧','♡','✿','·'];const colors=['#ff4fa3','#42e8ff','#a875ff','#ffe45c','#54f5b5'];
+  for(let i=0;i<5;i++){
+    const p=document.createElement('i');p.className='float-spark';p.textContent=chars[i];p.style.setProperty('--spark',colors[i]);
+    p.style.left=x+'px';p.style.top=y+'px';p.style.setProperty('--dx',((Math.random()-.5)*90)+'px');p.style.setProperty('--dy',(-20-Math.random()*70)+'px');
+    document.body.appendChild(p);setTimeout(()=>p.remove(),1700);
+  }
+}
+document.addEventListener('pointerdown',e=>{if(e.target.closest('button,.memory,.flower-bloom,.party-balloon'))sparkleAt(e.clientX,e.clientY)},{passive:true});
+$$('.flower-bloom').forEach(btn=>btn.addEventListener('animationend',()=>{if(btn.classList.contains('bloomed')){const r=btn.getBoundingClientRect();sparkleAt(r.left+r.width/2,r.top+r.height/2)}}));
+$$('.party-balloon').forEach(btn=>btn.addEventListener('animationend',()=>{if(btn.classList.contains('popped')){const r=btn.getBoundingClientRect();sparkleAt(r.left+r.width/2,r.top+r.height/2)}}));
+document.querySelectorAll('button').forEach(btn=>btn.addEventListener('pointermove',e=>{const r=btn.getBoundingClientRect();btn.style.setProperty('--mx',(e.clientX-r.left)+'px');btn.style.setProperty('--my',(e.clientY-r.top)+'px')},{passive:true}));
