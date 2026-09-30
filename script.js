@@ -49,6 +49,40 @@ audio.addEventListener('loadedmetadata',()=>{status.textContent=currentTrack==='
 audio.addEventListener('error',()=>status.textContent='The soundtrack could not be loaded.');
 $('#musicToggle').addEventListener('click',async()=>{if(audio.paused){try{await audio.play();$('#musicLabel').textContent=currentTrack==='angel'?'pause the happy part':'pause the night';status.textContent=currentTrack==='angel'?'Pretty Little Angel Eyes · playing':'City of Stars · playing'}catch{status.textContent='Playback was blocked. Tap again to start it.'}}else{audio.pause();$('#musicLabel').textContent=currentTrack==='angel'?'play the happy part':'play the night';status.textContent=currentTrack==='angel'?'Pretty Little Angel Eyes · paused':'City of Stars · paused'}});
 $('#envelope').addEventListener('click',()=>{const e=$('#envelope');if(e.classList.contains('open'))return;e.classList.add('open');setTimeout(()=>{$('#letterPaper').classList.add('show');document.querySelector('.tap-hint').textContent='a little piece of my heart';let i=0;const target=$('#letterText');const next=()=>{if(i>=letter.length)return;const p=document.createElement('p');p.textContent=letter[i++];target.appendChild(p);p.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:800});setTimeout(next,450)};next()},850)});
+
+const cutCake=$('#cutCake'),birthdayCake=$('#birthdayCake'),cakeStatus=$('#cakeStatus');
+if(cutCake&&birthdayCake){
+  cutCake.addEventListener('click',()=>{
+    if(birthdayCake.classList.contains('cut'))return;
+    birthdayCake.classList.add('cut');
+    cutCake.textContent='That’s one beautiful slice 🍰';
+    cakeStatus.textContent='Happy birthday, birthday girl. Now somebody get a plate.';
+    launchPartyConfetti();
+  });
+}
+$('.party-balloon').forEach((balloon,index)=>{
+  balloon.addEventListener('click',()=>{
+    if(balloon.classList.contains('popped'))return;
+    balloon.classList.add('popped');
+    const messages=['POP! 🎈','There goes one!','Another one bites the dust.','No balloons were safe tonight.','Okay, chaos officially started.'];
+    toast(messages[index%messages.length]);
+    launchBalloonBurst(balloon);
+  });
+});
+function launchBalloonBurst(el){
+  const rect=el.getBoundingClientRect(),x=rect.left+rect.width/2,y=rect.top+rect.height/2;
+  const colors=['#ff7eb6','#72d8ff','#ffd166','#b994ff','#82e4bd'];
+  for(let i=0;i<14;i++){
+    const p=document.createElement('i');p.className='pop-particle';p.style.left=x+'px';p.style.top=y+'px';p.style.setProperty('--dx',(Math.cos(i*Math.PI*2/14)*(25+Math.random()*45))+'px');p.style.setProperty('--dy',(Math.sin(i*Math.PI*2/14)*(25+Math.random()*45))+'px');p.style.background=colors[i%colors.length];document.body.appendChild(p);setTimeout(()=>p.remove(),700);
+  }
+}
+function launchPartyConfetti(){
+  const colors=['#ff7eb6','#ffd166','#72d8ff','#b994ff','#82e4bd'];
+  for(let i=0;i<55;i++){
+    const p=document.createElement('i');p.className='party-confetti';p.style.left=(50+(Math.random()-.5)*20)+'%';p.style.top='48%';p.style.setProperty('--dx',((Math.random()-.5)*500)+'px');p.style.setProperty('--dy',((Math.random()-.7)*500)+'px');p.style.background=colors[i%colors.length];document.body.appendChild(p);setTimeout(()=>p.remove(),1300);
+  }
+}
+
 const candleBox=$('#candles');for(let i=0;i<19;i++){const c=document.createElement('div');c.className='candle';c.innerHTML='<div class="flame"></div><div class="smoke"></div><div class="wax"></div>';candleBox.appendChild(c)}let blown=false;function blow(){if(blown)return;blown=true;$('.candle').forEach((c,i)=>setTimeout(()=>c.classList.add('off'),i*45));$('#candlePrompt').textContent='Make it a good one.';setTimeout(()=>{document.querySelector('.wish').classList.add('revealed');document.querySelector('.wish').scrollIntoView({behavior:'smooth'})},1700)}
 $('#blowBtn').addEventListener('click',blow);
 
@@ -107,7 +141,7 @@ window.addEventListener('devicemotion',e=>{
 if(candleSection){
   candleSection.addEventListener('touchstart',()=>{if(!motionEnabled)enableMotion()},{passive:true});
 }
-$('#secretHeart').addEventListener('click',()=>toast('There are still so many little things I love about you.'));$('.secret-star').addEventListener('click',()=>toast('You found one. I knew you would.'));
+$('#secretHeart')?.addEventListener('click',()=>toast('There are still so many little things I love about you.'));$('.secret-star').forEach(x=>x.addEventListener('click',()=>toast('You found one. I knew you would.')));
 const intro=$('#intro'); const lightsBtn=$('#lightsBtn'); const midnightClock=$('#midnightClock'); const midnightDate=$('#midnightDate'); const midnightMessage=$('#midnightMessage'); const musicStartBtn=$('#musicStartBtn');
 let openingStarted=false;
 lightsBtn.addEventListener('click',()=>{if(openingStarted)return;openingStarted=true;intro.classList.add('lights-on');launchOpeningCelebration();lightsBtn.textContent='The lights are on';const countdown=$('#birthdayCountdown');let remaining=19;countdown.textContent=remaining;const timer=setInterval(()=>{remaining--;if(remaining>0){countdown.textContent=remaining;countdown.animate([{transform:'scale(1.22)',opacity:.5},{transform:'scale(1)',opacity:1}],{duration:420,easing:'ease-out'})}else{clearInterval(timer);countdown.textContent='';intro.classList.add('midnight');midnightClock.textContent='12:00:00';midnightDate.textContent='1 October 2026';midnightMessage.textContent='Happy birthday, Srija.';launchMidnightFireworks()}},1000)});
