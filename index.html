@@ -130,7 +130,7 @@ main{position:relative}.section{min-height:100svh;padding:100px 7vw;position:rel
 
 <section class="section candles"><div><p class="eyebrow">09 · the little ritual</p><h2>19 candles.</h2><p class="muted">Make a wish, Srija. Then blow them out.</p><div class="candle-row" id="candles"></div><button class="btn blow" id="blow">Tap to blow them out</button><p id="candleMsg" class="muted">Close your eyes for a second. Think of something you really want.</p></div></section>
 
-<section class="section wish"><div class="wish-copy"><p class="eyebrow">10 · after the wish</p><p>Whatever you wished for...</p><p>I hope life finds a way to give you something even better.</p><p class="final">And I hope I'm there to see you smile when it happens. ♡</p></div></section>
+<section class="section wish"><div class="wish-copy"><p class="eyebrow">10 · after the wish</p><p>Whatever you wished for...</p><p>I hope life finds a way to give you something even better.</p><p class="final">And I hope I'm there to see you smile when it happens. ♡</p><div class="wish-love"><h2>I love you,<br>Srija. <span>♡</span></h2></div></div></section>
 
 <section class="section final"><div><div class="heart">♥</div><p class="eyebrow">11 · the end, for now</p><h2>Happy 19th,<br>Srija.</h2><p class="muted">This little universe is yours.</p><button class="btn" data-scroll="#memories">start again ↑</button></div></section>
 </main>
@@ -436,22 +436,15 @@ ready(function(){
 });
 })();
 </script>
-<!-- END-LOVE-MESSAGE-2026-10-01 -->
+
+
+<!-- WISH-LOVE-FIX-2026-10-01 -->
 <style>
-.end-love-message{min-height:360px;display:grid;place-items:center;text-align:center;padding:50px 20px;margin-top:-1px;position:relative;z-index:4;background:radial-gradient(circle at 50% 45%,#24122f 0,#090a12 68%);overflow:hidden}
-.end-love-message h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(3.4rem,15vw,8rem);font-weight:500;line-height:1.02;margin:0;color:#ffb4d7;text-shadow:0 0 35px #ff72b655}
-.end-love-message .love-heart{display:block;font-size:clamp(3rem,12vw,6rem);margin-top:18px;animation:pulse 1.5s infinite}
-@media(max-width:600px){.end-love-message{min-height:430px;padding:40px 18px}.end-love-message h2{font-size:clamp(3.1rem,16vw,5.8rem)}}
+.wish{position:relative;overflow:hidden}
+.wish-love{width:100%;margin-top:clamp(110px,18vh,220px);padding:25px 10px 70px;text-align:center;position:relative;z-index:3}
+.wish-love h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(3.6rem,16vw,8rem);font-weight:500;line-height:1.02;margin:0;color:#ffb4d7;text-shadow:0 0 35px #ff72b655}
+.wish-love h2 span{display:block;font-size:clamp(3rem,11vw,6rem);margin-top:18px;animation:pulse 1.5s infinite}
+@media(max-width:600px){.wish-love{margin-top:clamp(120px,20vh,210px);padding-bottom:55px}.wish-love h2{font-size:clamp(3.4rem,17vw,5.8rem)}}
 </style>
-<script>
-(function(){
-  var final=document.querySelector('.final');
-  if(!final || document.querySelector('.end-love-message')) return;
-  var s=document.createElement('section');
-  s.className='end-love-message';
-  s.innerHTML='<div><h2>I love you,<br>Srija.</h2><span class="love-heart">♡</span></div>';
-  final.parentNode.insertBefore(s,final);
-})();
-</script>
 </body>
 </html>
