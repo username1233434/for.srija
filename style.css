@@ -99,3 +99,45 @@
  .memory figcaption{padding:1.2rem 1rem 1.6rem;font-size:1.35rem}
  .memory figcaption::before{margin-bottom:1rem}
 }
+
+
+/* colorful memory gallery + playful second soundtrack */
+.memories{background:radial-gradient(circle at 10% 20%,rgba(255,111,174,.10),transparent 24%),radial-gradient(circle at 90% 55%,rgba(100,216,255,.08),transparent 24%),radial-gradient(circle at 45% 90%,rgba(192,132,252,.09),transparent 25%),#090a11}
+.memory-stage{position:relative}
+.memory{overflow:hidden;border:1px solid rgba(255,255,255,.07);transition:transform 900ms cubic-bezier(.2,.8,.2,1),opacity 900ms,box-shadow 500ms}
+.memory:hover{transform:translateY(-8px) rotate(.2deg)!important;box-shadow:0 34px 100px rgba(0,0,0,.48),0 0 50px rgba(217,168,173,.08)}
+.memory:nth-child(4n+1){box-shadow:0 30px 90px rgba(255,111,174,.10)}
+.memory:nth-child(4n+2){box-shadow:0 30px 90px rgba(100,216,255,.08)}
+.memory:nth-child(4n+3){box-shadow:0 30px 90px rgba(192,132,252,.09)}
+.memory:nth-child(4n){box-shadow:0 30px 90px rgba(255,209,102,.08)}
+.memory-media{position:relative;overflow:hidden;background:#080910;border-radius:2px}
+.memory-media::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.07),transparent 28%,transparent 72%,rgba(255,255,255,.04));pointer-events:none}
+.memory img,.memory video{display:block;width:100%;height:min(70svh,680px);object-fit:contain;background:#080910}
+.memory video{cursor:pointer}
+.video-memory .memory-media{background:radial-gradient(circle at 50% 50%,rgba(217,168,173,.12),#080910 65%)}
+.video-badge{position:absolute;left:12px;bottom:12px;z-index:2;padding:.45rem .65rem;border:1px solid rgba(255,255,255,.16);border-radius:100px;background:rgba(5,6,11,.62);backdrop-filter:blur(10px);font-size:.55rem;letter-spacing:.13em;text-transform:uppercase;color:#eee7df}
+.memory figcaption{position:relative}
+.memory figcaption::after{content:"✦";position:absolute;right:8%;bottom:8%;font-style:normal;font-size:.8rem;color:rgba(232,174,190,.55);animation:tinySpark 2.8s ease-in-out infinite}
+@keyframes tinySpark{0%,100%{opacity:.25;transform:scale(.8) rotate(0)}50%{opacity:1;transform:scale(1.2) rotate(15deg)}}
+
+.music{background:radial-gradient(circle at 18% 22%,rgba(255,111,174,.16),transparent 23%),radial-gradient(circle at 82% 28%,rgba(100,216,255,.13),transparent 25%),radial-gradient(circle at 50% 88%,rgba(255,209,102,.12),transparent 28%),#070810;}
+.music::before,.music::after{content:"";position:absolute;width:28vw;height:28vw;border-radius:50%;filter:blur(60px);opacity:.35;pointer-events:none;animation:musicGlow 6s ease-in-out infinite alternate}
+.music::before{left:-10%;top:15%;background:rgba(255,111,174,.45)}
+.music::after{right:-10%;bottom:10%;background:rgba(100,216,255,.38);animation-delay:-3s}
+.music-orbit{border-color:rgba(255,255,255,.13);box-shadow:inset 0 0 80px rgba(255,255,255,.025),0 0 100px rgba(192,132,252,.07);animation:orbitBreathe 7s ease-in-out infinite}
+.music-disc{position:absolute;left:10%;bottom:12%;width:clamp(70px,11vw,125px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font-size:clamp(1.5rem,4vw,3rem);background:conic-gradient(from 20deg,#ff6fae,#ffd166,#64d8ff,#c084fc,#ff6fae);box-shadow:0 0 45px rgba(255,111,174,.22);animation:recordSpin 9s linear infinite;opacity:.92}
+.music-disc::before{content:"";position:absolute;width:22%;aspect-ratio:1;border-radius:50%;background:#0b0c14;border:1px solid rgba(255,255,255,.2)}
+.music-disc{color:#fff}
+.track-card{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;margin:2rem auto 0;padding:1rem 1.15rem;border:1px solid rgba(255,255,255,.11);border-radius:22px;background:rgba(255,255,255,.045);backdrop-filter:blur(12px);text-align:left;max-width:620px}
+.track-card>div{display:grid;gap:.22rem;min-width:0}
+.track-label{font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:#e6a7b6}
+.track-card strong{font:600 1.15rem var(--serif);color:#f3eee6}
+.track-card span:last-child{font-size:.6rem;color:#99939a}
+.music-note{margin:2rem auto 0;font:italic 1rem/1.55 var(--serif);color:#bcb2b2}
+.music-sparkles{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle at 12% 32%,#ffd166 0 1px,transparent 2px),radial-gradient(circle at 28% 72%,#ff6fae 0 1px,transparent 2px),radial-gradient(circle at 72% 18%,#64d8ff 0 1px,transparent 2px),radial-gradient(circle at 88% 66%,#c084fc 0 1px,transparent 2px);background-size:170px 190px,230px 210px,250px 240px,190px 220px;opacity:.5;animation:twinkleField 5s linear infinite}
+@keyframes recordSpin{to{transform:rotate(360deg)}}
+@keyframes musicGlow{from{transform:scale(.85) translateY(8px)}to{transform:scale(1.15) translateY(-8px)}}
+@keyframes orbitBreathe{0%,100%{transform:scale(.985)}50%{transform:scale(1)}}
+@keyframes twinkleField{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:.65;transform:translateY(-10px)}}
+@media(max-width:700px){.memory img,.memory video{height:auto;max-height:58svh}.track-card{flex-direction:column;align-items:stretch;text-align:center}.track-card .music-button{width:100%;margin-top:.4rem}.music-disc{left:5%;bottom:6%;opacity:.72}.music-note{padding-bottom:1rem}}
+@media(prefers-reduced-motion:reduce){.music-disc,.music-orbit,.music-sparkles,.music::before,.music::after{animation:none}}
