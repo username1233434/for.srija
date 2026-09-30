@@ -876,5 +876,35 @@ ready(function(){
   }
 }
 </style>
+
+
+<!-- FINAL-WISH-TEXT-SIZE-FIX-2026-10-01 -->
+<style>
+/* Fill the dark wish panel more naturally instead of leaving a large empty gap. */
+.wish-copy > p:not(.eyebrow){
+  font-size:clamp(1.65rem,4.8vw,2.55rem)!important;
+  line-height:1.42!important;
+  max-width:900px!important;
+  margin-top:20px!important;
+  margin-bottom:22px!important;
+}
+.wish-love{
+  margin-top:clamp(26px,4vh,52px)!important;
+}
+.wish-love h2{
+  font-size:clamp(3.4rem,15vw,6.5rem)!important;
+}
+@media(max-width:600px){
+  .wish{padding-top:52px!important;padding-bottom:52px!important;}
+  .wish-copy > p:not(.eyebrow){
+    font-size:clamp(1.5rem,6.2vw,2rem)!important;
+    line-height:1.42!important;
+    margin-top:16px!important;
+    margin-bottom:18px!important;
+  }
+  .wish-love{margin-top:24px!important;padding-top:6px!important;padding-bottom:18px!important;}
+  .wish-love h2{font-size:clamp(3.25rem,16vw,5.8rem)!important;}
+}
+</style>
 </body>
 </html>
