@@ -486,6 +486,9 @@ ready(function(){
   var n=19;count.textContent=n;date.textContent='30 September';happy.style.opacity='0';
   var t=setInterval(function(){n--;if(n>0){count.textContent=n}else{clearInterval(t);celebrate()}},1000);
  };
+ var scheduled=false,lights=document.getElementById('lights');
+ if(lights) lights.addEventListener('click',function(){if(!scheduled){scheduled=true;setTimeout(function(){window.startMidnightBirthday();},19000);}});
+
 })();
 </script>
 </body>
