@@ -209,3 +209,23 @@ function launchOpeningCelebration(){const box=$('#openingConfetti');if(box&&!box
 
 function launchMidnightFireworks(){const canvas=$('#openingFireworks');if(!canvas)return;const ctx=canvas.getContext('2d'),dpr=Math.min(devicePixelRatio||1,2);let w=innerWidth,h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);canvas.style.opacity='1';const bursts=[];const colors=['#fff1b8','#ff7eb6','#7bdcff','#d7a8ff','#ffffff'];const makeBurst=(delay,scale=1)=>setTimeout(()=>{const x=w*(.16+Math.random()*.68),y=h*(.14+Math.random()*.42),color=colors[Math.floor(Math.random()*colors.length)];for(let i=0;i<85;i++){const a=i*Math.PI*2/85,v=(2.2+Math.random()*4.2)*scale;bursts.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,color,life:1,size:1.4+Math.random()*2.2})}},delay);makeBurst(0,1.15);makeBurst(240,.9);makeBurst(520,1.05);makeBurst(900,.75);let frame=0;const draw=()=>{ctx.clearRect(0,0,w,h);for(const p of bursts){p.x+=p.vx;p.y+=p.vy;p.vy+=.045;p.life-=.009;ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill()}ctx.globalAlpha=1;if(frame++<430)requestAnimationFrame(draw);else{ctx.clearRect(0,0,w,h);canvas.style.opacity='0'}};requestAnimationFrame(draw)}
 const keepGoing=$('#keepGoing');if(keepGoing)keepGoing.addEventListener('click',()=>document.querySelector('.chapter-world')?.scrollIntoView({behavior:'smooth',block:'start'}));
+
+$$('.flower-bloom').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    $$('.flower-bloom').forEach(x=>x.classList.remove('bloomed'));
+    btn.classList.remove('bloomed'); void btn.offsetWidth; btn.classList.add('bloomed');
+    const name=btn.dataset.flower;
+    const messages={
+      tulip:'A little tulip, because you deserve a spring that keeps coming back. 🌷',
+      rose:'A rose for the girl who makes ordinary days feel a little more romantic. 🌹',
+      lily:'A lily for you — soft, pretty, and impossible not to notice. ♡'
+    };
+    const box=$('#flowerMessage'); if(box)box.textContent=messages[name];
+    for(let i=0;i<10;i++){
+      const p=document.createElement('i');p.className='flower-petal';p.textContent=['✦','♡','✿'][i%3];
+      p.style.left=(50+(Math.random()-.5)*25)+'%';p.style.top='55%';
+      p.style.setProperty('--dx',((Math.random()-.5)*260)+'px');p.style.setProperty('--dy',(-80-Math.random()*180)+'px');
+      document.querySelector('.flowers')?.appendChild(p);setTimeout(()=>p.remove(),1100);
+    }
+  });
+});
