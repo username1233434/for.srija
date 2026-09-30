@@ -260,13 +260,4 @@ window.addEventListener('error',e=>{console.error(e);toast('Something on the pag
 })();
 </script>
 </body>
-</htmltry{$$('.flower').forEach(b=>b.addEventListener('click',()=>{$$('.flower').forEach(x=>x.classList.remove('bloom'));b.classList.add('bloom');$('#flowerMsg').textContent='A little '+b.dataset.flower+' for you. ♡'}))}catch(err){console.error('flower init failed',err)}
-
-try{const candles=$('#candles');for(let i=0;i<19;i++){const c=document.createElement('div');c.className='candle';candles.appendChild(c)}$('#blow').addEventListener('click',()=>{$$('.candle').forEach(c=>c.classList.add('out'));$('#candleMsg').textContent='Wish made. Candles out. ✨ I hope it comes true.';toast('Wish locked in ✨')})}catch(err){console.error('candle init failed',err)}
-$('#secret').addEventListener('click',()=>toast('Secret message: you are ridiculously loved. ♡'));
-
-window.addEventListener('error',e=>{console.error(e);toast('Something on the page hiccupped — keep going, the rest is still here ♡')});
-})();
-</script>
-</body>
 </html>
