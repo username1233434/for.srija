@@ -778,5 +778,52 @@ ready(function(){
 }
 </style>
 
+
+<!-- MIDNIGHT-CLOCK-SEQUENCE-2026-10-01 -->
+<style>
+#intro .clock{
+  display:block;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(1.5rem,5vw,2.4rem);
+  letter-spacing:.08em;
+  color:#fff8e8;
+  margin:-4px 0 10px;
+  text-shadow:0 0 18px #ffd56b55;
+}
+#intro .clock.midnight{
+  animation:midnightGlow 1.2s ease-out;
+}
+@keyframes midnightGlow{
+  0%{transform:scale(.82);opacity:.3}
+  45%{transform:scale(1.18);opacity:1}
+  100%{transform:scale(1)}
+}
+</style>
+<script>
+(function(){
+  const clock=document.getElementById('clock');
+  const date=document.getElementById('date');
+  if(!clock)return;
+
+  /* Start at 11:59 and reveal midnight exactly when the 19-second countdown reaches 0. */
+  clock.textContent='11:59';
+  const oldLights=document.getElementById('lights');
+  oldLights?.addEventListener('click',function(){
+    clock.textContent='11:59';
+    const watcher=setInterval(function(){
+      const count=document.getElementById('count')?.textContent;
+      if(count==='0'){
+        clearInterval(watcher);
+        clock.textContent='12:00';
+        clock.classList.add('midnight');
+        date.textContent='01.10.26';
+        setTimeout(()=>clock.classList.remove('midnight'),1300);
+      }
+    },80);
+    setTimeout(()=>clearInterval(watcher),20500);
+  });
+})();
+</script>
+
 </body>
 </html>
