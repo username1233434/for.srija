@@ -1198,5 +1198,45 @@ body:before{
   }
 })();
 </script>
-</body>
-</html>
+
+<!-- FINAL-WISH-MOBILE-LAYOUT-FIX-2026-10-01 -->
+<style>
+/* Mobile: the wish section should hug its content instead of forcing a full-screen blank panel. */
+@media screen and (max-width:700px){
+  .wish{
+    display:block!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:58px 18px 48px!important;
+    overflow:visible!important;
+  }
+  .wish-copy{
+    width:100%!important;
+    max-width:850px!important;
+    min-height:0!important;
+    margin:0 auto!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+  }
+  .wish-copy > p:not(.eyebrow){
+    width:100%!important;
+    margin:0 0 18px!important;
+    font-size:clamp(1.45rem,6vw,2rem)!important;
+    line-height:1.38!important;
+  }
+  .wish-copy > p.final{margin-bottom:0!important}
+  .wish-love{
+    width:100%!important;
+    margin:24px 0 0!important;
+    padding:8px 4px 18px!important;
+    position:relative!important;
+  }
+  .wish-love h2{
+    margin:0!important;
+    font-size:clamp(3.15rem,15.5vw,5.6rem)!important;
+    line-height:1!important;
+  }
+}
+</style>
+\n</body>\n</html>
