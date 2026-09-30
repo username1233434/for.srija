@@ -91,6 +91,7 @@ main{position:relative}.section{min-height:100svh;padding:100px 7vw;position:rel
 <script>
 (function(){
 'use strict';
+window.__birthdaySiteBooted = true;
 const $=s=>document.querySelector(s);
 const $$=s=>Array.from(document.querySelectorAll(s));
 const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),2200)};
@@ -147,14 +148,14 @@ const photos=[
 ['IMG-20260916-WA0232(1).jpg','and somehow, there is still more of you I want to see.']
 ];
 const stage=$('#memoryStage');
-photos.forEach((m,i)=>{
+try{photos.forEach((m,i)=>{
  const f=document.createElement('figure');f.className='memory';
  const src='assets/photos/'+encodeURIComponent(m[0]).replace(/%2F/g,'/');
  if(m[2]==='video'||m[2]==='root-video'){const videoSrc=m[2]==='root-video'?'': 'assets/photos/'; const finalSrc=(videoSrc+m[0]).replace(/ /g,'%20'); f.innerHTML='<div class="video-wrap"><video controls playsinline preload="metadata" src="'+finalSrc+'"></video><span class="badge">moving memory · '+String(i+1).padStart(2,'0')+'</span></div><figcaption>'+m[1]+'</figcaption>';} 
  else f.innerHTML='<img loading="lazy" src="'+src+'" alt="A memory of Srija"><figcaption>'+m[1]+'</figcaption>';
  stage.appendChild(f);
-});
-if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.08});$('.memory').forEach(x=>io.observe(x));}else{$('.memory').forEach(x=>x.classList.add('show'));}
+});}catch(err){console.error('memory init failed',err)}
+try{if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.08});$('.memory').forEach(x=>io.observe(x));}else{$('.memory').forEach(x=>x.classList.add('show'));}
 
 const reasons=[
 'I love your oompa loompa 😋.',
@@ -177,8 +178,7 @@ const reasons=[
 'I love all the memories we’ve already made, but I love knowing there are so many more waiting for us.',
 'I love you because you’re you. Not because of one particular thing, not because you have to be perfect, and not because I can put it into 19 reasons. I just love you, Srija. And somehow, out of all the people in this world, I’m so fucking lucky that it’s you. ❤️'
 ];
-let ri=0;const renderReason=()=>{$('#reasonText').textContent=reasons[ri];$('#reasonNo').textContent=String(ri+1).padStart(2,'0')};renderReason();
-$('#nextReason').addEventListener('click',()=>{ri=(ri+1)%19;renderReason()});
+let ri=0;const renderReason=()=>{$('#reasonText').textContent=reasons[ri];$('#reasonNo').textContent=String(ri+1).padStart(2,'0')};try{renderReason();$('#nextReason').addEventListener('click',()=>{ri=(ri+1)%19;renderReason()})}catch(err){console.error('reasons init failed',err);$('#reasonText').textContent=reasons[0]||'I love you, Srija. ♡'}
 
 const letter=[
 'I’m really glad to be sharing this last teenage year with you.',
@@ -193,19 +193,20 @@ const letter=[
 'Thank you for being you. Thank you for the love, the chaos, the laughter, the drama, the memories, and for choosing to stay.',
 'Whatever the future brings, I’ll always be grateful that somewhere along my timeline, I got to meet you.'
 ];
-$('#letterText').innerHTML=letter.map(x=>'<p>'+x+'</p>').join('');
-$('#envelope').addEventListener('click',()=>{$('#envelope').classList.toggle('open');$('#paper').classList.toggle('open')});
+try{$('#letterText').innerHTML=letter.map(x=>'<p>'+x+'</p>').join('');$('#envelope').addEventListener('click',()=>{$('#envelope').classList.toggle('open');$('#paper').classList.toggle('open')})}catch(err){console.error('letter init failed',err)}
 
-$('#play').addEventListener('click',async()=>{const a=$('#audio');a.src='assets/audio/Pretty%20Little%20Angel%20Eyes.mp3';try{if(a.paused){await a.play();$('#play').textContent='pause ♪';$('#audioStatus').textContent='Pretty Little Angel Eyes · playing ♡'}else{a.pause();$('#play').textContent='play ♪';$('#audioStatus').textContent='paused'}}catch(e){toast('Tap again to start the song ♫')}});
+try{$('#play').addEventListener('click',async()=>{const a=$('#audio');a.src='assets/audio/Pretty%20Little%20Angel%20Eyes.mp3';try{if(a.paused){await a.play();$('#play').textContent='pause ♪';$('#audioStatus').textContent='Pretty Little Angel Eyes · playing ♡'}else{a.pause();$('#play').textContent='play ♪';$('#audioStatus').textContent='paused'}}catch(e){toast('Tap again to start the song ♫')}})}catch(err){console.error('music init failed',err)}
 
-$('#cakeBtn').addEventListener('click',()=>{$('#cakeMsg').textContent='Cake cut! 🍰 Happy birthday, birthday girl!';toast('Cake successfully attacked 🍰')});
-$$('.balloon').forEach(b=>b.addEventListener('click',()=>{b.classList.add('popped');setTimeout(()=>b.remove(),250)}));
+try{$('#cakeBtn').addEventListener('click',()=>{$('#cakeMsg').textContent='Cake cut! 🍰 Happy birthday, birthday girl!';toast('Cake successfully attacked 🍰')})}catch(err){console.error('cake init failed',err)}
+try{$('.balloon').forEach(b=>b.addEventListener('click',()=>{b.classList.add('popped');setTimeout(()=>b.remove(),250)}))}catch(err){console.error('balloon init failed',err)}
 
-$$('.flower').forEach(b=>b.addEventListener('click',()=>{ $$('.flower').forEach(x=>x.classList.remove('bloom'));b.classList.add('bloom');$('#flowerMsg').textContent='A little '+b.dataset.flower+' for you. ♡'}));
+try{$('.flower').forEach(b=>b.addEventListener('click',()=>{ $$('.flower').forEach(x=>x.classList.remove('bloom'));b.classList.add('bloom');$('#flowerMsg').textContent='A little '+b.dataset.flower+' for you. ♡'}));
 
-const candles=$('#candles');for(let i=0;i<19;i++){const c=document.createElement('div');c.className='candle';candles.appendChild(c)}
-$('#blow').addEventListener('click',()=>{$$('.candle').forEach(c=>c.classList.add('out'));$('#candleMsg').textContent='Wish made. Candles out. ✨ I hope it comes true.';toast('Wish locked in ✨')});
+try{const candles=$('#candles');for(let i=0;i<19;i++){const c=document.createElement('div');c.className='candle';candles.appendChild(c)}
+$('#blow').addEventListener('click',()=>{$$('.candle').forEach(c=>c.classList.add('out'));$('#candleMsg').textContent='Wish made. Candles out. ✨ I hope it comes true.';toast('Wish locked in ✨')});}catch(err){console.error('candle init failed',err)}
 $('#secret').addEventListener('click',()=>toast('Secret message: you are ridiculously loved. ♡'));
+
+document.addEventListener('click',e=>{const b=e.target.closest && e.target.closest('#cakeBtn,.balloon,#nextReason,#envelope,#blow');if(!b)return;if(b.id==='cakeBtn'){$('#cakeMsg').textContent='Cake cut! 🍰 Happy birthday, birthday girl!';toast('Cake successfully attacked 🍰')}else if(b.classList.contains('balloon')){b.classList.add('popped');setTimeout(()=>b.remove(),250)}else if(b.id==='nextReason'){ri=(ri+1)%19;renderReason()}else if(b.id==='envelope'){$('#envelope').classList.toggle('open');$('#paper').classList.toggle('open')}else if(b.id==='blow'){$('.candle').forEach(c=>c.classList.add('out'));$('#candleMsg').textContent='Wish made. Candles out. ✨ I hope it comes true.';toast('Wish locked in ✨')}});
 
 window.addEventListener('error',e=>{console.error(e);toast('Something on the page hiccupped — keep going, the rest is still here ♡')});
 })();
