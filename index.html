@@ -436,5 +436,22 @@ ready(function(){
 });
 })();
 </script>
+<!-- END-LOVE-MESSAGE-2026-10-01 -->
+<style>
+.end-love-message{min-height:360px;display:grid;place-items:center;text-align:center;padding:50px 20px;margin-top:-1px;position:relative;z-index:4;background:radial-gradient(circle at 50% 45%,#24122f 0,#090a12 68%);overflow:hidden}
+.end-love-message h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(3.4rem,15vw,8rem);font-weight:500;line-height:1.02;margin:0;color:#ffb4d7;text-shadow:0 0 35px #ff72b655}
+.end-love-message .love-heart{display:block;font-size:clamp(3rem,12vw,6rem);margin-top:18px;animation:pulse 1.5s infinite}
+@media(max-width:600px){.end-love-message{min-height:430px;padding:40px 18px}.end-love-message h2{font-size:clamp(3.1rem,16vw,5.8rem)}}
+</style>
+<script>
+(function(){
+  var final=document.querySelector('.final');
+  if(!final || document.querySelector('.end-love-message')) return;
+  var s=document.createElement('section');
+  s.className='end-love-message';
+  s.innerHTML='<div><h2>I love you,<br>Srija.</h2><span class="love-heart">♡</span></div>';
+  final.parentNode.insertBefore(s,final);
+})();
+</script>
 </body>
 </html>
