@@ -39,3 +39,22 @@ function setupStars(id,count){
 }
 setupStars('introStars',180);
 setupStars('ambientStars',220);
+
+(function createConfetti(){
+  const box=document.getElementById('confetti'); if(!box)return;
+  const pieces=window.matchMedia('(max-width:700px)').matches?55:95;
+  for(let i=0;i<pieces;i++){
+    const p=document.createElement('i');
+    p.style.left=(Math.random()*100)+'%';
+    p.style.top=(-10-Math.random()*80)+'%';
+    p.style.setProperty('--drift',((Math.random()-.5)*180)+'px');
+    p.style.animationDuration=(6+Math.random()*9)+'s';
+    p.style.animationDelay=(-Math.random()*12)+'s';
+    p.style.transform='rotate('+Math.random()*360+'deg)';
+    const shapes=['4px 12px','7px 7px','3px 15px'];
+    p.style.width=shapes[i%shapes.length].split(' ')[0];
+    p.style.height=shapes[i%shapes.length].split(' ')[1];
+    p.style.background=['#e6a7b6','#c8add9','#e5c27d','#a9c9d8','#e8e1d7'][i%5];
+    box.appendChild(p);
+  }
+})();
