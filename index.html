@@ -1298,4 +1298,42 @@ body:before{
   }
 }
 </style>
+\n
+
+<!-- MEMORY-SCROLL-FLICKER-FIX-2026-10-01 -->
+<style>
+/* Stabilize memory cards during mobile scrolling. The old reveal transform/opacity transition
+   can be composited repeatedly by mobile browsers while the page is moving. */
+.memory{
+  opacity:1!important;
+  transform:translateZ(0) rotate(var(--tilt,0deg))!important;
+  transition:none!important;
+  -webkit-transform:translateZ(0) rotate(var(--tilt,0deg))!important;
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+  contain:paint;
+}
+.memory.show{
+  opacity:1!important;
+  transform:translateZ(0) rotate(var(--tilt,0deg))!important;
+}
+.memory img,.memory video{
+  transform:translateZ(0);
+  -webkit-transform:translateZ(0);
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+}
+@media(max-width:700px){
+  .memory,.memory.show{
+    transform:translateZ(0)!important;
+    -webkit-transform:translateZ(0)!important;
+    will-change:auto!important;
+  }
+  .memory img,.memory video{
+    transform:translateZ(0)!important;
+    -webkit-transform:translateZ(0)!important;
+    will-change:auto!important;
+  }
+}
+</style>
 \n</body>\n</html>
