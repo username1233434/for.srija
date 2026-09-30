@@ -249,7 +249,7 @@ const photos=[
 const stage=$('#memoryStage');
 try{photos.forEach((m,i)=>{
  const f=document.createElement('figure');f.className='memory';
- const src='assets/photos/'+encodeURIComponent(m[0]).replace(/%2F/g,'/');
+ const src='assets/photos/'+encodeURIComponent(m[0]).replace(/%2F/g,'/')+(m[0]==='IMG-20260916-WA0209.jpg'?'?v=0209fix':'');
  if(m[2]==='video'||m[2]==='root-video'){const videoSrc=m[2]==='root-video'?'':'assets/photos/'; const finalSrc=(videoSrc+m[0]).replace(/ /g,'%20'); f.classList.add('video-card'); f.innerHTML='<div class="video-wrap"><video autoplay muted loop playsinline preload="auto" src="'+finalSrc+'"></video><span class="badge">moving memory · '+String(i+1).padStart(2,'0')+'</span></div><figcaption>'+m[1]+'</figcaption>';} 
  else f.innerHTML='<img loading="lazy" src="'+src+'" alt="A memory of Srija"><figcaption>'+m[1]+'</figcaption>';
  stage.appendChild(f);
