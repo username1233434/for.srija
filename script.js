@@ -83,7 +83,7 @@ function launchPartyConfetti(){
   }
 }
 
-const candleBox=$('#candles');for(let i=0;i<19;i++){const c=document.createElement('div');c.className='candle';c.innerHTML='<div class="flame"></div><div class="smoke"></div><div class="wax"></div>';candleBox.appendChild(c)}let blown=false;function blow(){if(blown)return;blown=true;$('.candle').forEach((c,i)=>setTimeout(()=>c.classList.add('off'),i*45));$('#candlePrompt').textContent='Make it a good one.';setTimeout(()=>{document.querySelector('.wish').classList.add('revealed');document.querySelector('.wish').scrollIntoView({behavior:'smooth'})},1700)}
+const candleBox=$('#candles');for(let i=0;i<19;i++){const c=document.createElement('div');c.className='candle';c.innerHTML='<div class="flame"></div><div class="smoke"></div><div class="wax"></div>';candleBox.appendChild(c)}let blown=false;function blow(){if(blown)return;blown=true;$$('.candle').forEach((c,i)=>setTimeout(()=>c.classList.add('off'),i*45));$('#candlePrompt').textContent='Make it a good one.';setTimeout(()=>{document.querySelector('.wish').classList.add('revealed');document.querySelector('.wish').scrollIntoView({behavior:'smooth'})},1700)}
 $('#blowBtn').addEventListener('click',blow);
 
 let motionEnabled=false,shakeHits=0,lastShake=0,lastMotion=0,prevMotion=null;
