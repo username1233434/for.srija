@@ -10,7 +10,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
 :root{--bg:#070812;--panel:#101321;--text:#f8f4f7;--muted:#b8b2c0;--pink:#ff72b6;--cyan:#63e6ff;--gold:#ffe27a;--purple:#a982ff}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#060711;color:var(--text);font-family:'DM Sans',system-ui,sans-serif;overflow-x:hidden}body:before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 12% 8%,#ff5eaa22,transparent 28%),radial-gradient(circle at 88% 24%,#58e6ff1c,transparent 30%),radial-gradient(circle at 50% 88%,#9c64ff1c,transparent 34%);opacity:.9}body:after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.16;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:64px 64px}button{font:inherit}a{color:inherit}.hidden{display:none!important}
-#intro.lights-on{background:radial-gradient(circle at 50% 45%,#28213d 0,#080914 48%,#05060b 100%)}#intro.lights-on .stars{opacity:.65}#intro.lights-on .orb{opacity:.55}#intro{position:fixed;inset:0;z-index:100;background:#05060b;display:grid;place-items:center;overflow:hidden;transition:opacity .9s,visibility .9s}.intro-hide{opacity:0;visibility:hidden;pointer-events:none}.stars{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:42px 42px;opacity:.25}.orb{position:absolute;width:42vw;height:42vw;max-width:360px;max-height:360px;border-radius:50%;filter:blur(45px);opacity:.3;animation:float 7s ease-in-out infinite}.o1{background:#ff4da6;left:-10%;top:5%}.o2{background:#42d9ff;right:-12%;top:25%;animation-delay:-2s}.o3{background:#9c64ff;left:35%;bottom:-20%;animation-delay:-4s}@keyframes float{50%{transform:translateY(-25px) scale(1.08)}}.intro-card{position:relative;z-index:2;text-align:center;width:min(720px,90vw);padding:32px}.eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#c7c0cf;margin:0 0 16px}.intro-card h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(4rem,18vw,9rem);font-weight:400;line-height:.8;margin:18px 0;background:linear-gradient(90deg,#fff,#ffb4d8,#fff);-webkit-background-clip:text;color:transparent}.intro-line{font-family:Georgia,serif;font-size:clamp(1.2rem,4vw,2rem);line-height:1.45;color:#eee6ee}.count{font-size:clamp(4rem,15vw,7rem);font-weight:700;margin:18px 0;color:#fff}.clock,.date{display:none}.date{color:var(--gold);margin-top:8px}.intro-msg{font-family:Georgia,serif;font-size:1.4rem;margin:18px 0}.btn{border:1px solid #ffffff42;background:#ffffff0d;color:#fff;border-radius:999px;padding:13px 20px;cursor:pointer;backdrop-filter:blur(12px);transition:.2s}.btn:hover{background:#ffffff18;transform:translateY(-2px)}.skip{position:absolute;right:18px;bottom:18px;z-index:5;border:0;background:none;color:#aaa;font-size:.75rem;cursor:pointer;text-decoration:underline}.intro-card .btn{margin-top:8px}.small-note{font-size:.75rem;color:#aaa;margin-top:12px}
+#intro.lights-on{background:radial-gradient(circle at 50% 45%,#5d4b82 0,#211a35 30%,#0b0b16 68%,#05060b 100%);transition:background 1.5s ease}#intro.lights-on:after{content:'';position:absolute;inset:-20%;background:radial-gradient(circle at 50% 45%,#fff6 0,#ffb4d833 18%,transparent 52%);animation:stageLightBloom 1.8s ease-out forwards;pointer-events:none}#intro.lights-on .stars{opacity:.8}#intro.lights-on .orb{opacity:.7}@keyframes stageLightBloom{0%{opacity:0;transform:scale(.65)}55%{opacity:1}100%{opacity:.45;transform:scale(1)}}#intro{position:fixed;inset:0;z-index:100;background:#05060b;display:grid;place-items:center;overflow:hidden;transition:opacity .9s,visibility .9s}.intro-hide{opacity:0;visibility:hidden;pointer-events:none}.stars{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:42px 42px;opacity:.25}.orb{position:absolute;width:42vw;height:42vw;max-width:360px;max-height:360px;border-radius:50%;filter:blur(45px);opacity:.3;animation:float 7s ease-in-out infinite}.o1{background:#ff4da6;left:-10%;top:5%}.o2{background:#42d9ff;right:-12%;top:25%;animation-delay:-2s}.o3{background:#9c64ff;left:35%;bottom:-20%;animation-delay:-4s}@keyframes float{50%{transform:translateY(-25px) scale(1.08)}}.intro-card{position:relative;z-index:2;text-align:center;width:min(720px,90vw);padding:32px}.eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#c7c0cf;margin:0 0 16px}.intro-card h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(4rem,18vw,9rem);font-weight:400;line-height:.8;margin:18px 0;background:linear-gradient(90deg,#fff,#ffb4d8,#fff);-webkit-background-clip:text;color:transparent}.intro-line{font-family:Georgia,serif;font-size:clamp(1.2rem,4vw,2rem);line-height:1.45;color:#eee6ee}.count{font-size:clamp(4rem,15vw,7rem);font-weight:700;margin:18px 0;color:#fff}.clock,.date{display:none}.date{color:var(--gold);margin-top:8px}.intro-msg{font-family:Georgia,serif;font-size:1.4rem;margin:18px 0}.btn{border:1px solid #ffffff42;background:#ffffff0d;color:#fff;border-radius:999px;padding:13px 20px;cursor:pointer;backdrop-filter:blur(12px);transition:.2s}.btn:hover{background:#ffffff18;transform:translateY(-2px)}.skip{position:absolute;right:18px;bottom:18px;z-index:5;border:0;background:none;color:#aaa;font-size:.75rem;cursor:pointer;text-decoration:underline}.intro-card .btn{margin-top:8px}.small-note{font-size:.75rem;color:#aaa;margin-top:12px}
 
 main{position:relative}.section{min-height:100svh;padding:100px 7vw;position:relative;display:grid;align-items:center;overflow:hidden}.hero{min-height:100svh;place-items:center;text-align:center;background:radial-gradient(circle at 50% 40%,#251633 0,transparent 42%)}.hero h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(7rem,30vw,16rem);font-weight:400;line-height:.7;margin:0;background:linear-gradient(#fff,#ff9dcb);-webkit-background-clip:text;color:transparent}.hero-deck{font-size:clamp(1.3rem,4vw,2rem);margin:28px 0 8px}.hero-small{color:var(--muted);line-height:1.7}.continue{margin-top:30px}.secret{position:absolute;right:7%;top:18%;background:none;border:0;color:#ffe77c;font-size:2rem;cursor:pointer;animation:pulse 2s infinite}@keyframes pulse{50%{transform:scale(1.25);opacity:.65}}
 .chapter{min-height:80svh;background:linear-gradient(180deg,#090a12,#0c1020)}.chapter h2,.section h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.4rem,7vw,5rem);font-weight:400;line-height:1.02;margin:0 0 28px}.chapter-copy{max-width:700px}.accent{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:clamp(1.5rem,4vw,2.4rem);color:var(--pink);font-family:Georgia,serif}.constellation{position:absolute;inset:0;pointer-events:none}.constellation i,.constellation span{position:absolute;width:5px;height:5px;border-radius:50%;background:#fff;box-shadow:0 0 18px #fff}.constellation span:nth-child(1){left:15%;top:30%}.constellation span:nth-child(2){left:55%;top:20%}.constellation span:nth-child(3){right:15%;top:45%}.constellation span:nth-child(4){left:42%;bottom:18%}.constellation i{right:32%;bottom:25%}
@@ -91,7 +91,7 @@ main{position:relative}.section{min-height:100svh;padding:100px 7vw;position:rel
 #intro .opening-confetti i{animation-play-state:paused}
 #intro.lights-on .opening-confetti i{animation-play-state:running}
 .party-decor{opacity:0;transition:opacity .4s}
-.party-decor.party-start{opacity:1}
+.party-decor.party-start{opacity:1}.party-decor.party-start .float-balloon{animation:balloonDrop 2.8s cubic-bezier(.18,.8,.2,1) forwards}
 .party-decor .float-balloon{top:-120px!important;bottom:auto!important;opacity:0}
 .party-decor.party-start .float-balloon{animation:balloonDrop 2.8s cubic-bezier(.18,.8,.2,1) forwards}
 .party-decor.party-start .fb1{animation-delay:.15s}.party-decor.party-start .fb2{animation-delay:.35s}.party-decor.party-start .fb3{animation-delay:.55s}.party-decor.party-start .fb4{animation-delay:.75s}.party-decor.party-start .fb5{animation-delay:.95s}
@@ -106,8 +106,9 @@ main{position:relative}.section{min-height:100svh;padding:100px 7vw;position:rel
   <p class="eyebrow">a little countdown before midnight</p>
   <p class="intro-line">So, how'd you feel if someone made something special just for you?</p>
   <h1>Srija</h1>
+  <div class="date" id="date">30.09.26</div>
   <div class="count" id="count">19</div>
-  <div class="clock" id="clock">11:59:59</div><div class="date" id="date">30 September 2026</div>
+  <div class="clock" id="clock">11:59:59</div>
   <p class="intro-msg" id="introMsg">Turn on the lights ✨</p>
   <button class="btn" id="lights">Turn on the lights</button>
   <button class="btn hidden" id="musicStart">Tap to start City of Stars ♪</button>
@@ -166,15 +167,40 @@ const $$=s=>Array.from(document.querySelectorAll(s));
 const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),2200)};
 const closeIntro=()=>{$('#intro').classList.add('intro-hide');window.scrollTo(0,0)};
 let started=false,timer=null;
-function launchOpeningCelebration(){
- const box=$('#openingConfetti'); if(box&&!box.children.length){const colors=['#ff6fae','#ffd166','#64d8ff','#c084fc','#7ee787','#ff8f70'];for(let i=0;i<100;i++){const p=document.createElement('i');p.style.left=Math.random()*100+'%';p.style.setProperty('--drift',(Math.random()-.5)*220+'px');p.style.background=colors[i%colors.length];p.style.animation='openingConfettiFall '+(3.5+Math.random()*4)+'s ease-out '+Math.random()*.9+'s forwards';p.style.transform='rotate('+Math.random()*360+'deg)';box.appendChild(p)}}
+function launchOpeningCelebration(phase){
+ const box=$('#openingConfetti'); if((!phase||phase==='confetti')&&box&&!box.children.length){const colors=['#ff6fae','#ffd166','#64d8ff','#c084fc','#7ee787','#ff8f70'];for(let i=0;i<100;i++){const p=document.createElement('i');p.style.left=Math.random()*100+'%';p.style.setProperty('--drift',(Math.random()-.5)*220+'px');p.style.background=colors[i%colors.length];p.style.animation='openingConfettiFall '+(3.5+Math.random()*4)+'s ease-out '+Math.random()*.9+'s forwards';p.style.transform='rotate('+Math.random()*360+'deg)';box.appendChild(p)}}
+ if(phase==='confetti') return;
  const canvas=$('#openingFireworks');if(!canvas)return;const ctx=canvas.getContext('2d'),dpr=Math.min(devicePixelRatio||1,2);let w=innerWidth,h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);const bursts=[];for(let b=0;b<7;b++){setTimeout(()=>{const x=w*(.12+Math.random()*.76),y=h*(.12+Math.random()*.5),color=['#ff6fae','#ffd166','#64d8ff','#c084fc','#7ee787'][b%5];for(let i=0;i<55;i++){const q=i*Math.PI*2/55,v=1.5+Math.random()*3.5;bursts.push({x,y,vx:Math.cos(q)*v,vy:Math.sin(q)*v,color,life:1})}},b*330)}let frame=0;const draw=()=>{ctx.clearRect(0,0,w,h);for(const p of bursts){p.x+=p.vx;p.y+=p.vy;p.vy+=.035;p.life-=.012;ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,1.6,0,Math.PI*2);ctx.fill()}ctx.globalAlpha=1;if(frame++<230)requestAnimationFrame(draw)};requestAnimationFrame(draw)
 }
 $('#lights').addEventListener('click',()=>{
- if(started)return;started=true;$('#lights').disabled=true;$('#lights').textContent='Lights are on ✨';$('#intro').classList.add('lights-on');document.querySelector('.party-decor')?.classList.add('party-start');launchOpeningCelebration();
- $('#introMsg').textContent='Now wait for the countdown…';
- let n=19;$('#count').textContent=n;
- timer=setInterval(()=>{n--;if(n>0){$('#count').textContent=n;$('#count').animate([{transform:'scale(1.22)',opacity:.5},{transform:'scale(1)',opacity:1}],{duration:420,easing:'ease-out'})}else{clearInterval(timer);$('#count').textContent='';$('#introMsg').textContent='Happy birthday, Srija. ♡';$('#musicStart').classList.remove('hidden');$('#introNote').textContent='The music is waiting.'}},1000);
+ if(started)return;
+ started=true;
+ $('#lights').disabled=true;
+ $('#lights').textContent='Lights are on ✨';
+ $('#intro').classList.add('lights-on');
+ $('#introMsg').textContent='The lights are on… now watch the night begin.';
+ let n=19;
+ $('#count').textContent=n;
+ 
+ /* Exact 19-second countdown: 19 → 18 → … → 1 → 0 */
+ timer=setInterval(()=>{
+   n--;
+   if(n>=0){
+     $('#count').textContent=n;
+     $('#count').animate([{transform:'scale(1.22)',opacity:.5},{transform:'scale(1)',opacity:1}],{duration:420,easing:'ease-out'});
+   }
+   if(n===0){
+     clearInterval(timer);
+     $('#date').textContent='01.10.26';
+     $('#introMsg').textContent='Happy birthday babe ♡';
+     $('#musicStart').classList.remove('hidden');
+     $('#introNote').textContent='The music is waiting.';
+     /* Celebration sequence: confetti → fireworks → balloons */
+     setTimeout(()=>launchOpeningCelebration('confetti'),250);
+     setTimeout(()=>launchOpeningCelebration('fireworks'),1500);
+     setTimeout(()=>document.querySelector('.party-decor')?.classList.add('party-start'),2700);
+   }
+ },1000);
 });
 $('#musicStart').addEventListener('click',async()=>{
  const a=$('#audio');a.src='assets/audio/%27City%20of%20Stars%27%20%28Duet%20ft.%20Ryan%20Gosling%2C%20Emma%20Stone%29%20-%20La%20La%20Land%20Original%20Motion%20Picture%20Soundtrack%20-%20%28320%20Kbps%29.mp3';
