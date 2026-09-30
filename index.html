@@ -76,6 +76,27 @@ main{position:relative}.section{min-height:100svh;padding:100px 7vw;position:rel
  .final h2{font-size:clamp(3rem,14vw,5rem)}
 }
 </style>
+
+<!-- OPENING-CELEBRATION-STAGE-2026-10-01 -->
+<style>
+/* Cinematic lights-on sequence */
+#intro{background:#010207;transition:background 1.6s ease,filter 1.6s ease}
+#intro.lights-on{background:radial-gradient(circle at 50% 42%,#514269 0%,#1d1930 28%,#090a14 62%,#020308 100%);filter:brightness(1.08)}
+#intro.lights-on:after{content:'';position:absolute;inset:-20%;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,#fff5 0%,#ffdff02b 12%,transparent 45%);opacity:0;animation:stageLights 1.8s ease-out forwards}
+@keyframes stageLights{0%{opacity:0;transform:scale(.35)}35%{opacity:1}100%{opacity:.42;transform:scale(1)}}
+#intro.lights-on .intro-card{animation:stageReveal 1.4s ease-out}
+@keyframes stageReveal{0%{opacity:.25;transform:scale(.97)}100%{opacity:1;transform:scale(1)}}
+#openingFireworks{transition:opacity .3s}
+#intro.lights-on #openingFireworks{opacity:1}
+#intro .opening-confetti i{animation-play-state:paused}
+#intro.lights-on .opening-confetti i{animation-play-state:running}
+.party-decor{opacity:0;transition:opacity .4s}
+.party-decor.party-start{opacity:1}
+.party-decor .float-balloon{top:-120px!important;bottom:auto!important;opacity:0}
+.party-decor.party-start .float-balloon{animation:balloonDrop 2.8s cubic-bezier(.18,.8,.2,1) forwards}
+.party-decor.party-start .fb1{animation-delay:.15s}.party-decor.party-start .fb2{animation-delay:.35s}.party-decor.party-start .fb3{animation-delay:.55s}.party-decor.party-start .fb4{animation-delay:.75s}.party-decor.party-start .fb5{animation-delay:.95s}
+@keyframes balloonDrop{0%{top:-120px;opacity:0;transform:translateY(-30px) rotate(-8deg)}25%{opacity:.9}70%{top:8vh;opacity:.95}100%{top:12vh;opacity:.82;transform:translateY(0) rotate(2deg)}}
+</style>
 </head>
 <body>
 <div class="party-decor" aria-hidden="true"><div class="float-balloon fb1"></div><div class="float-balloon fb2"></div><div class="float-balloon fb3"></div><div class="float-balloon fb4"></div><div class="float-balloon fb5"></div><div class="confetti-layer" id="confettiLayer"></div></div>
@@ -150,7 +171,7 @@ function launchOpeningCelebration(){
  const canvas=$('#openingFireworks');if(!canvas)return;const ctx=canvas.getContext('2d'),dpr=Math.min(devicePixelRatio||1,2);let w=innerWidth,h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);const bursts=[];for(let b=0;b<7;b++){setTimeout(()=>{const x=w*(.12+Math.random()*.76),y=h*(.12+Math.random()*.5),color=['#ff6fae','#ffd166','#64d8ff','#c084fc','#7ee787'][b%5];for(let i=0;i<55;i++){const q=i*Math.PI*2/55,v=1.5+Math.random()*3.5;bursts.push({x,y,vx:Math.cos(q)*v,vy:Math.sin(q)*v,color,life:1})}},b*330)}let frame=0;const draw=()=>{ctx.clearRect(0,0,w,h);for(const p of bursts){p.x+=p.vx;p.y+=p.vy;p.vy+=.035;p.life-=.012;ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,1.6,0,Math.PI*2);ctx.fill()}ctx.globalAlpha=1;if(frame++<230)requestAnimationFrame(draw)};requestAnimationFrame(draw)
 }
 $('#lights').addEventListener('click',()=>{
- if(started)return;started=true;$('#lights').disabled=true;$('#lights').textContent='Lights are on ✨';$('#intro').classList.add('lights-on');launchOpeningCelebration();
+ if(started)return;started=true;$('#lights').disabled=true;$('#lights').textContent='Lights are on ✨';$('#intro').classList.add('lights-on');document.querySelector('.party-decor')?.classList.add('party-start');launchOpeningCelebration();
  $('#introMsg').textContent='Now wait for the countdown…';
  let n=19;$('#count').textContent=n;
  timer=setInterval(()=>{n--;if(n>0){$('#count').textContent=n;$('#count').animate([{transform:'scale(1.22)',opacity:.5},{transform:'scale(1)',opacity:1}],{duration:420,easing:'ease-out'})}else{clearInterval(timer);$('#count').textContent='';$('#introMsg').textContent='Happy birthday, Srija. ♡';$('#musicStart').classList.remove('hidden');$('#introNote').textContent='The music is waiting.'}},1000);
