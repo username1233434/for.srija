@@ -853,5 +853,28 @@ ready(function(){
   #intro .intro-card h1{font-size:clamp(3rem,17vw,5.7rem)!important;letter-spacing:-.045em;line-height:.9;}
 }
 </style>
+
+
+<!-- FINAL-SRIJA-DESCENDER-FIX-2026-10-01 -->
+<style>
+/* Give the lowercase j its full descender room on the opening screen. */
+#intro .intro-card h1{
+  display:block;
+  font-size:clamp(2.9rem,16vw,7.2rem)!important;
+  line-height:1.08!important;
+  padding:0 .08em .08em!important;
+  margin-top:14px!important;
+  margin-bottom:18px!important;
+  overflow:visible!important;
+}
+@media(max-width:600px){
+  #intro .intro-card h1{
+    font-size:clamp(2.85rem,16vw,5.45rem)!important;
+    line-height:1.08!important;
+    letter-spacing:-.04em!important;
+    padding:0 .12em .12em!important;
+  }
+}
+</style>
 </body>
 </html>
