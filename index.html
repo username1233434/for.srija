@@ -264,5 +264,83 @@ try{const box=$('#confettiLayer');if(box){const colors=['#ff72b6','#ffe27a','#63
 window.addEventListener('error',e=>{console.error(e);toast('Something on the page hiccupped — keep going, the rest is still here ♡')});
 })();
 </script>
-</body>
+
+<!-- ROBUST-BIRTHDAY-FEATURES-2026-09-30 -->
+<style>
+/* Permanent starry-night layer */
+body:before{background:radial-gradient(circle at 12% 8%,#ff5eaa22,transparent 28%),radial-gradient(circle at 88% 24%,#58e6ff1c,transparent 30%),radial-gradient(circle at 50% 88%,#9c64ff1c,transparent 34%),radial-gradient(#fff 1px,transparent 1px);background-size:auto,auto,auto,52px 52px;animation:starDrift 22s linear infinite}
+@keyframes starDrift{to{background-position:0 0,0 0,0 0,52px 52px}}
+</style>
+<script>
+(function(){
+'use strict';
+const q=s=>document.querySelector(s), qa=s=>Array.from(document.querySelectorAll(s));
+const reasons=[
+'I love your oompa loompa 😋.',
+'I love your eyes, your little nose, your lips, your chin, your eyebrows, and that little bindi between them. Basically, I love every little part of your face.',
+'I love your smile, especially the ones you make without realizing how cute you look.',
+'I love how you can make me laugh even when I’m having the worst day.',
+'I love how you are willing to accept your mistakes and actually work on them to become a better person.',
+'I love how daring and fun you can be; your side that makes random things feel like an adventure.',
+'I love you being a drama queen 😂❤️.',
+'I love our random conversations that somehow turn into hours of talking.',
+'I love how stupid and chaotic we can be together and still have the best time.',
+'I love how comfortable I feel being completely myself around you.',
+'I love the little things you do that you probably don’t even realize I’ve noticed.',
+'I love how much you care about the people you love.',
+'I love that every memory with you somehow becomes a memory I want to keep forever.',
+'I love how you’ve become such a beautiful part of my everyday life.',
+'I love that even after all the conversations we’ve had, I still never seem to run out of things I want to tell you.',
+'I love the way you make me want to become a better version of myself, simply by being someone worth becoming better for.',
+'I love the person you are today, but I also love watching you grow, change, and become the person you’re meant to be.',
+'I love all the memories we’ve already made, but I love knowing there are so many more waiting for us.',
+'I love you because you’re you. Not because of one particular thing, not because you have to be perfect, and not because I can put it into 19 reasons. I just love you, Srija. And somehow, out of all the people in this world, I’m so fucking lucky that it’s you. ❤️'
+];
+const letter=[
+'I’m really glad to be sharing this last teenage year with you.',
+'I still remember all the moments since the beginning, the little conversations, the random laughs, the stupid things we’ve done, the good times, the difficult times, and everything in between. Somehow, all those little moments became some of the memories I cherish the most.',
+'I know things get difficult from time to time, and I know we won’t always agree on everything. But no matter what happens, I want us to always find our way through it together. I’ll always try to understand you, listen to you, and put you first.',
+'I hope I’ve made you feel loved, cared for, and heard enough. And if there are ever moments when I haven’t, I hope you know that I’ll keep trying, because you deserve to feel all of those things.',
+'I hope we grow together, as a couple, but also individually and personally, in every aspect of our lives. I want to see you become everything you dream of becoming.',
+'I love all the little things that make you you — your drama queen moments 😂, your daring and crazy side, your stupid jokes, your expressions, your smile, and all those tiny things that somehow became my favourite things.',
+'I will always remember the good times we’ve had.',
+'And I look forward to sharing one more year with you, your last year as a teenager.',
+'It’s crazy to think that you’re going to be 20 after this year. But before that happens, I want us to make this year something we’ll look back on and smile about.',
+'Thank you for being you. Thank you for the love, the chaos, the laughter, the drama, the memories, and for choosing to stay.',
+'Whatever the future brings, I’ll always be grateful that somewhere along my timeline, I got to meet you.'
+];
+
+try{
+ const rt=q('#reasonText'), rn=q('#reasonNo'), nb=q('#nextReason');
+ if(rt && !rt.textContent.trim()){
+   let i=0; const show=()=>{rt.textContent=reasons[i];if(rn)rn.textContent=String(i+1).padStart(2,'0')};
+   show();
+   if(nb) nb.onclick=()=>{i=(i+1)%reasons.length;show()};
+ }
+}catch(e){console.error(e)}
+
+try{
+ const lt=q('#letterText'), env=q('#envelope'), paper=q('#paper');
+ if(lt && !lt.innerHTML.trim()) lt.innerHTML=letter.map(x=>'<p>'+x+'</p>').join('');
+ if(env && paper) env.onclick=()=>{env.classList.toggle('open');paper.classList.toggle('open')};
+}catch(e){console.error(e)}
+
+try{
+ const cake=q('#cake'), cb=q('#cakeBtn'), cm=q('#cakeMsg');
+ if(cb) cb.onclick=()=>{cake&&cake.classList.add('cut');if(cm)cm.textContent='One perfect little slice, just for you. 🍰';cb.textContent='Cake cut! ♡'};
+}catch(e){console.error(e)}
+
+try{
+ qa('.flower').forEach(b=>b.onclick=()=>{qa('.flower').forEach(x=>x.classList.remove('bloom'));b.classList.add('bloom');const m=q('#flowerMsg');if(m)m.textContent='A little '+b.dataset.flower+' for you. ♡'});
+}catch(e){console.error(e)}
+
+try{
+ const a=q('#audio'), play=q('#play');
+ if(a) a.addEventListener('ended',()=>{
+   const src='assets/audio/Pretty%20Little%20Angel%20Eyes.mp3';
+   if(!a.src.endsWith('Pretty%20Little%20Angel%20Eyes.mp3')){a.src=src;a.play().catch(()=>{});if(play)play.textContent='pause ♪';const st=q('#audioStatus');if(st)st.textContent='Pretty Little Angel Eyes · playing ♡'}
+ });
+}catch(e){console.error(e)}
+})();
+</script>\n</body>
 </html>
