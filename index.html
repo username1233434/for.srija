@@ -155,7 +155,7 @@ try{photos.forEach((m,i)=>{
  else f.innerHTML='<img loading="lazy" src="'+src+'" alt="A memory of Srija"><figcaption>'+m[1]+'</figcaption>';
  stage.appendChild(f);
 });}catch(err){console.error('memory init failed',err)}
-try{if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.08});$('.memory').forEach(x=>io.observe(x));}else{$('.memory').forEach(x=>x.classList.add('show'));}
+$$('.memory').forEach(x=>x.classList.add('show'));
 
 const reasons=[
 'I love your oompa loompa 😋.',
@@ -195,15 +195,15 @@ const letter=[
 ];
 try{$('#letterText').innerHTML=letter.map(x=>'<p>'+x+'</p>').join('');$('#envelope').addEventListener('click',()=>{$('#envelope').classList.toggle('open');$('#paper').classList.toggle('open')})}catch(err){console.error('letter init failed',err)}
 
-try{$('#play').addEventListener('click',async()=>{const a=$('#audio');a.src='assets/audio/Pretty%20Little%20Angel%20Eyes.mp3';try{if(a.paused){await a.play();$('#play').textContent='pause ♪';$('#audioStatus').textContent='Pretty Little Angel Eyes · playing ♡'}else{a.pause();$('#play').textContent='play ♪';$('#audioStatus').textContent='paused'}}catch(e){toast('Tap again to start the song ♫')}})}catch(err){console.error('music init failed',err)}
+$('#play').addEventListener('click',async()=>{const a=$('#audio');a.src='assets/audio/Pretty%20Little%20Angel%20Eyes.mp3';try{if(a.paused){await a.play();$('#play').textContent='pause ♪';$('#audioStatus').textContent='Pretty Little Angel Eyes · playing ♡'}else{a.pause();$('#play').textContent='play ♪';$('#audioStatus').textContent='paused'}}catch(e){toast('Tap again to start the song ♫')}});
 
-try{$('#cakeBtn').addEventListener('click',()=>{$('#cakeMsg').textContent='Cake cut! 🍰 Happy birthday, birthday girl!';toast('Cake successfully attacked 🍰')})}catch(err){console.error('cake init failed',err)}
-try{$('.balloon').forEach(b=>b.addEventListener('click',()=>{b.classList.add('popped');setTimeout(()=>b.remove(),250)}))}catch(err){console.error('balloon init failed',err)}
+$('#cakeBtn').addEventListener('click',()=>{$('#cakeMsg').textContent='Cake cut! 🍰 Happy birthday, birthday girl!';toast('Cake successfully attacked 🍰')});
+$$('.balloon').forEach(b=>b.addEventListener('click',()=>{b.classList.add('popped');setTimeout(()=>b.remove(),250)}));
+$$('.flower').forEach(b=>b.addEventListener('click',()=>{$$('.flower').forEach(x=>x.classList.remove('bloom'));b.classList.add('bloom');$('#flowerMsg').textContent='A little '+b.dataset.flower+' for you. ♡'}));
 
-try{$('.flower').forEach(b=>b.addEventListener('click',()=>{ $$('.flower').forEach(x=>x.classList.remove('bloom'));b.classList.add('bloom');$('#flowerMsg').textContent='A little '+b.dataset.flower+' for you. ♡'}));
+const candles=$('#candles');for(let i=0;i<19;i++){const c=document.createElement('div');c.className='candle';candles.appendChild(c)}
+$('#blow').addEventListener('click',()=>{$$('.candle').forEach(c=>c.classList.add('out'));$('#candleMsg').textContent='Wish made. Candles out. ✨ I hope it comes true.';toast('Wish locked in ✨')});
 
-try{const candles=$('#candles');for(let i=0;i<19;i++){const c=document.createElement('div');c.className='candle';candles.appendChild(c)}
-$('#blow').addEventListener('click',()=>{$$('.candle').forEach(c=>c.classList.add('out'));$('#candleMsg').textContent='Wish made. Candles out. ✨ I hope it comes true.';toast('Wish locked in ✨')});}catch(err){console.error('candle init failed',err)}
 $('#secret').addEventListener('click',()=>toast('Secret message: you are ridiculously loved. ♡'));
 
 document.addEventListener('click',e=>{const b=e.target.closest && e.target.closest('#cakeBtn,.balloon,#nextReason,#envelope,#blow');if(!b)return;if(b.id==='cakeBtn'){$('#cakeMsg').textContent='Cake cut! 🍰 Happy birthday, birthday girl!';toast('Cake successfully attacked 🍰')}else if(b.classList.contains('balloon')){b.classList.add('popped');setTimeout(()=>b.remove(),250)}else if(b.id==='nextReason'){ri=(ri+1)%19;renderReason()}else if(b.id==='envelope'){$('#envelope').classList.toggle('open');$('#paper').classList.toggle('open')}else if(b.id==='blow'){$('.candle').forEach(c=>c.classList.add('out'));$('#candleMsg').textContent='Wish made. Candles out. ✨ I hope it comes true.';toast('Wish locked in ✨')}});
