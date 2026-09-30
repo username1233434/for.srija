@@ -35,7 +35,7 @@ const letter=[`I’m really glad to be sharing this last teenage year with you.`
 const toast=msg=>{const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(window._toast);window._toast=setTimeout(()=>t.classList.remove('show'),2600)};
 $('#enterBtn').addEventListener('click',()=>{$('#intro').classList.add('exit');$('#story').setAttribute('aria-hidden','false');switchToAngelEyes();setTimeout(()=>document.querySelector('.hero').scrollIntoView({behavior:'smooth'}),450)});
 const stage=$('#memoryStage');mediaItems.forEach((item,i)=>{const f=document.createElement('figure');f.className='memory '+(item.type==='video'?'video-memory':'photo-memory');if(item.type==='video'){f.innerHTML=`<div class="memory-media"><video loading="lazy" muted loop playsinline preload="metadata" src="assets/photos/${item.src}" aria-label="A little video from Srija's story"></video><span class="video-badge">moving memory · ${String(i+1).padStart(2,'0')}</span></div><figcaption>${item.caption}</figcaption>`}else{f.innerHTML=`<div class="memory-media"><img loading="lazy" src="assets/photos/${item.src}" alt="A photo of Srija"></div><figcaption>${item.caption}</figcaption>`}stage.appendChild(f)});
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');const v=e.target.querySelector('video');if(v)v.play().catch(()=>{})}else{const v=e.target.querySelector('video');if(v)v.pause()}}),{threshold:.14});$('.memory').forEach(x=>io.observe(x));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');const v=e.target.querySelector('video');if(v)v.play().catch(()=>{})}else{const v=e.target.querySelector('video');if(v)v.pause()}}),{threshold:.14});$$('.memory').forEach(x=>io.observe(x));
 let reason=0;const reasonText=$('#reasonText'),reasonIndex=$('#reasonIndex');function renderReason(){reasonText.innerHTML=reasons[reason].replace(/\n/g,'<br>');reasonIndex.textContent=String(reason+1).padStart(2,'0');reasonText.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'none'}],{duration:600,easing:'cubic-bezier(.2,.8,.2,1)'})}renderReason();$('#nextReason').addEventListener('click',()=>{reason=(reason+1)%19;renderReason()});
 const audio=$('#song');
 const cityFile="'City of Stars' (Duet ft. Ryan Gosling, Emma Stone) - La La Land Original Motion Picture Soundtrack - (320 Kbps).mp3";
@@ -60,7 +60,7 @@ if(cutCake&&birthdayCake){
     launchPartyConfetti();
   });
 }
-$$('.party-balloon').forEach((balloon,index)=>{
+$$$('.party-balloon').forEach((balloon,index)=>{
   balloon.addEventListener('click',()=>{
     if(balloon.classList.contains('popped'))return;
     balloon.classList.add('popped');
@@ -83,7 +83,7 @@ function launchPartyConfetti(){
   }
 }
 
-const candleBox=$('#candles');for(let i=0;i<19;i++){const c=document.createElement('div');c.className='candle';c.innerHTML='<div class="flame"></div><div class="smoke"></div><div class="wax"></div>';candleBox.appendChild(c)}let blown=false;function blow(){if(blown)return;blown=true;$('.candle').forEach((c,i)=>setTimeout(()=>c.classList.add('off'),i*45));$('#candlePrompt').textContent='Make it a good one.';setTimeout(()=>{document.querySelector('.wish').classList.add('revealed');document.querySelector('.wish').scrollIntoView({behavior:'smooth'})},1700)}
+const candleBox=$('#candles');for(let i=0;i<19;i++){const c=document.createElement('div');c.className='candle';c.innerHTML='<div class="flame"></div><div class="smoke"></div><div class="wax"></div>';candleBox.appendChild(c)}let blown=false;function blow(){if(blown)return;blown=true;$$('.candle').forEach((c,i)=>setTimeout(()=>c.classList.add('off'),i*45));$('#candlePrompt').textContent='Make it a good one.';setTimeout(()=>{document.querySelector('.wish').classList.add('revealed');document.querySelector('.wish').scrollIntoView({behavior:'smooth'})},1700)}
 $('#blowBtn').addEventListener('click',blow);
 
 let motionEnabled=false,shakeHits=0,lastShake=0,lastMotion=0,prevMotion=null;
@@ -141,7 +141,7 @@ window.addEventListener('devicemotion',e=>{
 if(candleSection){
   candleSection.addEventListener('touchstart',()=>{if(!motionEnabled)enableMotion()},{passive:true});
 }
-$('#secretHeart')?.addEventListener('click',()=>toast('There are still so many little things I love about you.'));$('.secret-star').forEach(x=>x.addEventListener('click',()=>toast('You found one. I knew you would.')));
+$('#secretHeart')?.addEventListener('click',()=>toast('There are still so many little things I love about you.'));$$('.secret-star').forEach(x=>x.addEventListener('click',()=>toast('You found one. I knew you would.')));
 const intro=$('#intro');const lightsBtn=$('#lightsBtn');const midnightClock=$('#midnightClock');const midnightDate=$('#midnightDate');const midnightMessage=$('#midnightMessage');const musicStartBtn=$('#musicStartBtn');const enterBtn=$('#enterBtn');const countdown=$('#birthdayCountdown');let openingStarted=false;let openingTimer=null;
 function revealStory(){intro.classList.add('exit');$('#story').setAttribute('aria-hidden','false');setTimeout(()=>document.querySelector('.hero')?.scrollIntoView({behavior:'smooth',block:'start'}),120);}
 function finishMidnight(){if(intro.classList.contains('midnight'))return;clearInterval(openingTimer);if(countdown)countdown.textContent='';intro.classList.add('midnight');midnightClock.textContent='12:00:00';midnightDate.textContent='1 October 2026';midnightMessage.textContent='Happy birthday, Srija.';try{launchMidnightFireworks()}catch(e){console.warn(e)}if(musicStartBtn)musicStartBtn.focus({preventScroll:true});}
@@ -212,9 +212,9 @@ function launchOpeningCelebration(){const box=$('#openingConfetti');if(box&&!box
 function launchMidnightFireworks(){const canvas=$('#openingFireworks');if(!canvas)return;const ctx=canvas.getContext('2d'),dpr=Math.min(devicePixelRatio||1,2);let w=innerWidth,h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);canvas.style.opacity='1';const bursts=[];const colors=['#fff1b8','#ff7eb6','#7bdcff','#d7a8ff','#ffffff'];const makeBurst=(delay,scale=1)=>setTimeout(()=>{const x=w*(.16+Math.random()*.68),y=h*(.14+Math.random()*.42),color=colors[Math.floor(Math.random()*colors.length)];for(let i=0;i<85;i++){const a=i*Math.PI*2/85,v=(2.2+Math.random()*4.2)*scale;bursts.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,color,life:1,size:1.4+Math.random()*2.2})}},delay);makeBurst(0,1.15);makeBurst(240,.9);makeBurst(520,1.05);makeBurst(900,.75);let frame=0;const draw=()=>{ctx.clearRect(0,0,w,h);for(const p of bursts){p.x+=p.vx;p.y+=p.vy;p.vy+=.045;p.life-=.009;ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill()}ctx.globalAlpha=1;if(frame++<430)requestAnimationFrame(draw);else{ctx.clearRect(0,0,w,h);canvas.style.opacity='0'}};requestAnimationFrame(draw)}
 const keepGoing=$('#keepGoing');if(keepGoing)keepGoing.addEventListener('click',()=>document.querySelector('.chapter-world')?.scrollIntoView({behavior:'smooth',block:'start'}));
 
-$('.flower-bloom').forEach(btn=>{
+$$('.flower-bloom').forEach(btn=>{
   btn.addEventListener('click',()=>{
-    $('.flower-bloom').forEach(x=>x.classList.remove('bloomed'));
+    $$('.flower-bloom').forEach(x=>x.classList.remove('bloomed'));
     btn.classList.remove('bloomed'); void btn.offsetWidth; btn.classList.add('bloomed');
     const name=btn.dataset.flower;
     const messages={
@@ -258,8 +258,8 @@ function sparkleAt(x,y){
   }
 }
 document.addEventListener('pointerdown',e=>{if(e.target.closest('button,.memory,.flower-bloom,.party-balloon'))sparkleAt(e.clientX,e.clientY)},{passive:true});
-$('.flower-bloom').forEach(btn=>btn.addEventListener('animationend',()=>{if(btn.classList.contains('bloomed')){const r=btn.getBoundingClientRect();sparkleAt(r.left+r.width/2,r.top+r.height/2)}}));
-$('.party-balloon').forEach(btn=>btn.addEventListener('animationend',()=>{if(btn.classList.contains('popped')){const r=btn.getBoundingClientRect();sparkleAt(r.left+r.width/2,r.top+r.height/2)}}));
+$$('.flower-bloom').forEach(btn=>btn.addEventListener('animationend',()=>{if(btn.classList.contains('bloomed')){const r=btn.getBoundingClientRect();sparkleAt(r.left+r.width/2,r.top+r.height/2)}}));
+$$('.party-balloon').forEach(btn=>btn.addEventListener('animationend',()=>{if(btn.classList.contains('popped')){const r=btn.getBoundingClientRect();sparkleAt(r.left+r.width/2,r.top+r.height/2)}}));
 document.querySelectorAll('button').forEach(btn=>btn.addEventListener('pointermove',e=>{const r=btn.getBoundingClientRect();btn.style.setProperty('--mx',(e.clientX-r.left)+'px');btn.style.setProperty('--my',(e.clientY-r.top)+'px')},{passive:true}));
 
 (function addHiddenSurprise(){
