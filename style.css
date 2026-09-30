@@ -266,3 +266,28 @@ h1,h2,h3,.chapter-heading h2,.hero-copy h2,.final h2{font-family:var(--display)}
 @media(max-width:800px){.party{grid-template-columns:1fr;gap:1rem;padding:6rem 1.25rem}.party-copy{text-align:center}.party-copy p:not(.eyebrow){margin-left:auto;margin-right:auto}.party-glow{width:90vw;height:90vw;right:-30vw}.party-balloon{width:52px;height:68px}.party-balloon:after{top:67px;height:55px}.balloon-hint{right:50%;transform:translateX(50%);bottom:5%;white-space:nowrap}.party-copy h2{font-size:clamp(3.2rem,15vw,6rem)}}
 
 .pop-particle,.party-confetti{position:fixed;width:7px;height:10px;border-radius:2px;z-index:50;pointer-events:none;animation:partyParticle .65s ease-out forwards}.party-confetti{width:6px;height:12px;animation-duration:1.25s}@keyframes partyParticle{0%{transform:translate(-50%,-50%) scale(1) rotate(0);opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.2) rotate(540deg);opacity:0}}
+/* kawaii garden + floating stickers */
+.kawaii-sky{position:absolute;inset:0;pointer-events:none;z-index:4;overflow:hidden}
+.kawaii-sticker{position:absolute;font-size:clamp(2.4rem,5vw,4.8rem);filter:drop-shadow(0 10px 18px rgba(0,0,0,.25));animation:kawaiiFloat 5s ease-in-out infinite}
+.kawaii-sticker span{display:block;font:600 .62rem var(--display);color:#ffe6ef;text-shadow:0 2px 8px #0008;text-align:center;margin-top:-.3rem}
+.kawaii-sticker.bunny{left:7%;top:25%;transform:rotate(-8deg)}.kawaii-sticker.bear{right:7%;top:31%;animation-delay:-1.7s}.kawaii-sticker.cat{left:11%;bottom:14%;animation-delay:-3s}
+.kawaii-sparkle{position:absolute;right:22%;top:19%;color:#ffd6e6;font-size:2rem;animation:twinkleCute 1.8s ease-in-out infinite}.kawaii-sparkle.s2{right:16%;top:23%;animation-delay:-.7s;color:#ffe09a}
+.flowers{min-height:100svh;position:relative;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 50% 75%,rgba(255,151,194,.13),transparent 25%),linear-gradient(180deg,#0b0b13,#10101b)}
+.flower-copy{position:relative;z-index:3;text-align:center;max-width:800px;padding:6rem 1.5rem}
+.flower-copy h2{font:800 clamp(3.5rem,9vw,8rem)/.9 var(--display);letter-spacing:-.08em;margin:.5rem 0 1.2rem}
+.flower-copy>p:not(.eyebrow):not(.flower-message){font:500 1.1rem/1.8 var(--serif);color:#d8cfd4;max-width:580px;margin:auto}
+.flower-row{display:flex;justify-content:center;gap:clamp(1rem,4vw,3rem);margin:3rem 0 1rem}
+.flower-bloom{position:relative;border:0;background:none;cursor:pointer;font-size:clamp(4rem,9vw,7rem);filter:drop-shadow(0 12px 18px rgba(0,0,0,.25));transition:transform .35s,filter .35s;animation:flowerSway 4s ease-in-out infinite}
+.flower-bloom:nth-child(2){animation-delay:-1s}.flower-bloom:nth-child(3){animation-delay:-2s}
+.flower-bloom:hover{transform:translateY(-12px) scale(1.12) rotate(3deg);filter:drop-shadow(0 0 28px rgba(255,174,205,.35))}
+.flower-bloom small{display:block;font:600 .62rem var(--display);letter-spacing:.16em;text-transform:uppercase;color:#d7c6ce;margin-top:-.5rem}
+.flower-bloom.bloomed{animation:flowerBloom .9s cubic-bezier(.2,.9,.2,1);filter:drop-shadow(0 0 35px rgba(255,185,215,.42))}
+.flower-message{min-height:2rem;font:italic 1.1rem var(--serif);color:#ffc9dc;margin-top:1.2rem}
+.flower-bg{position:absolute;inset:auto -5% -6%;height:48%;display:flex;align-items:flex-end;justify-content:space-around;opacity:.22;filter:blur(.2px);font-size:clamp(3rem,8vw,7rem)}
+.flower-bg span{display:block;animation:gardenSway 5s ease-in-out infinite;transform-origin:bottom center}.flower-bg span:nth-child(2n){animation-delay:-1.5s}.flower-bg span:nth-child(3n){animation-delay:-3s}
+@keyframes kawaiiFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-15px) rotate(5deg)}}
+@keyframes twinkleCute{0%,100%{opacity:.3;transform:scale(.7) rotate(0)}50%{opacity:1;transform:scale(1.25) rotate(18deg)}}
+@keyframes flowerSway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg) translateY(-5px)}}
+@keyframes flowerBloom{0%{transform:scale(.7) rotate(-12deg);filter:brightness(.8)}55%{transform:scale(1.25) rotate(7deg);filter:brightness(1.35) drop-shadow(0 0 32px rgba(255,190,220,.55))}100%{transform:scale(1) rotate(0)}}
+@keyframes gardenSway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg) translateY(-8px)}}
+@media(max-width:700px){.kawaii-sticker.bunny{left:2%;top:19%}.kawaii-sticker.bear{right:2%;top:25%}.kawaii-sticker.cat{left:4%;bottom:10%}.flower-row{gap:.4rem}.flower-bg{font-size:4rem}}
